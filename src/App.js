@@ -1,25 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import TopNavBar from './TopNavBar/TopNavBar';
+import Dropdown from './Dropdown/Dropdown';
+import Home from './HomePage/HomePage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const setActiveTab = () => {
+
+	}
+
+  	return (
+    	<div id="App">
+			<TopNavBar
+				setActiveTab={setActiveTab}
+			/>
+			<Dropdown/>
+			<Home/>
+    	</div>
+ 	);
 }
 
 export default App;

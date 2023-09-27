@@ -1,0 +1,63 @@
+@font-face {
+	font-family:'Rubik Bold';
+	src: url('./../../fonts/Rubik-Bold.ttf');
+}
+
+@font-face {
+	font-family:'Rubik Regular';
+	src: url('./../../fonts/Rubik-Regular.ttf');
+}
+
+@media only screen and (max-width: 500px) {/*MOBILE*/
+    #Dropdown{ display:none;
+        position:absolute; right:10px; padding:25px 10px 10px 10px;
+        flex-direction:column; justify-content:flex-start; align-items:flex-start; width:150px; height:250px;
+        background-color:white; box-shadow:1px 2px 4px 2px #E8E8E8; border-radius:8px; box-sizing:border-box;
+    }
+
+    .Dopts{
+        font-size:15px; padding:8px 5px; border-bottom:0.1px grey solid;
+    }
+
+    #Dbtm{
+        margin-top:20px;
+    }
+
+    #Dsignin{
+        width:100%; background-color:var(--red1); color:var(--white1); text-align:center; font-size:15px;
+        padding:8px 0px; border-radius:8px;
+    }
+
+    #Daccount{
+
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
+    #Dropdown{  display:none;
+        position:absolute; right:35px; padding:40px 18px 20px 18px;
+        flex-direction:column; justify-content:flex-start; align-items:flex-start; width:260px; height:400px;
+        background-color:white; box-shadow:1px 2px 4px 2px #E8E8E8; border-radius:8px; box-sizing:border-box;
+    }
+
+    .Dopts{
+        font-size:22px; padding:15px 10px; border-bottom:0.5px grey solid;
+    }
+
+    #Dbtm{
+        margin-top:30px;
+    }
+
+    #Dsignin{
+        width:100%; background-color:var(--red1); color:var(--white1); text-align:center; font-size:22px;
+        padding:15px 0px; border-radius:10px;
+    }
+
+    #Daccount{
+
+    }
+}
+
+@media only screen and (min-width: 1200px) {/*LAPTOP*/
+    #Dropdown{ display:none; }
+}

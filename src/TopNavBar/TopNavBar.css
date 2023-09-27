@@ -1,0 +1,86 @@
+@font-face {
+	font-family:'Rubik Bold';
+	src: url('./../../fonts/Rubik-Bold.ttf');
+}
+
+@font-face {
+	font-family:'Rubik Regular';
+	src: url('./../../fonts/Rubik-Regular.ttf');
+}
+
+@media only screen and (max-width: 500px) {/*MOBILE*/
+    #TopNavBar{
+        width:100%; height:auto; padding:10px 5px; box-sizing:border-box;
+        display:flex; flex-direction:row; align-items:center; justify-content:space-between;
+    }
+    
+    #TNBleft{
+        font-family:'Rubik Bold'; font-size:17px; color:var(--red1); display:flex;
+        flex-direction:row; align-items:center; justify-content:flex-start; cursor:pointer;
+    }
+    
+    #TNBlogo{ width:20px; height:20px; border-radius:50%; margin-right:5px; background-color:red; }
+    
+    #TNBmiddle{ display:none; }
+
+    #TNBright{ display:none; }
+
+    #TNBburger{ display:flex; width:25px; height:25px; border-radius:6px; background-color:red; }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
+    #TopNavBar{
+        width:100%; height:auto; padding:15px 20px; box-sizing:border-box;
+        display:flex; flex-direction:row; align-items:center; justify-content:space-between;
+    }
+    
+    #TNBleft{
+        font-family:'Rubik Bold'; font-size:24px; color:var(--red1); display:flex;
+        flex-direction:row; align-items:center; justify-content:flex-start; cursor:pointer;
+    }
+    
+    #TNBlogo{ width:35px; height:35px; border-radius:50%; margin-right:10px; background-color:red; }
+    
+    #TNBmiddle{ display:none; }
+
+    #TNBright{ display:none; }
+
+    #TNBburger{ display:flex; width:40px; height:40px; border-radius:10px; background-color:red; }
+}
+
+@media only screen and (min-width: 1200px) {/*LAPTOP*/
+    #TopNavBar{
+        width:100%; height:auto; padding:5px 20px 20px 20px; box-sizing:border-box;
+        display:flex; flex-direction:row; align-items:center; justify-content:space-between;
+    }
+    
+    #TNBleft{
+        font-family:'Rubik Bold'; font-size:20px; color:var(--red1); display:flex;
+        flex-direction:row; align-items:center; justify-content:flex-start; cursor:pointer;
+    }
+    
+    #TNBlogo{ width:20px; height:20px; border-radius:50%; margin-right:5px; background-color:red; }
+    
+    #TNBmiddle{
+        width:630px; display:flex; flex-direction:row; align-items:center; justify-content:space-around;
+        font-family:'Rubik Regular';
+    }
+    
+    .TNBopts{
+        display:flex; flex-direction:column; align-items:center; justify-content:space-around; 
+        transition-duration:0.25s; cursor:pointer;
+    }
+    
+    .TNBdivs{
+        width:5px; height:5px; background-color:black; border-radius:50%; margin-top:2px;
+    }
+    
+    #TNBright{
+        background-color:red; color:white; font-family:'Rubik regular'; font-size:16px; padding:10px 25px;
+        border-radius:20px; cursor:pointer;
+    }   
+
+    #TNBburger{
+        display:none;
+    }
+}
