@@ -9,18 +9,19 @@
 }
 
 @media only screen and (max-width: 500px) {/*MOBILE*/
-    #Dropdown{ display:none;
-        position:absolute; right:10px; padding:25px 10px 10px 10px;
+    #Dropdown{ overflow:hidden;
+        transition-duration:0.25s;
+        position:absolute; top:50px; padding:25px 10px 10px 10px;
         flex-direction:column; justify-content:flex-start; align-items:flex-start; width:150px; height:250px;
         background-color:white; box-shadow:1px 2px 4px 2px #E8E8E8; border-radius:8px; box-sizing:border-box;
     }
 
     .Dopts{
-        font-size:15px; padding:8px 5px; border-bottom:0.1px grey solid;
+        font-size:15px; padding:8px 5px; border-bottom:0.1px grey solid; width:85%;
     }
 
     #Dbtm{
-        margin-top:20px;
+        margin-top:20px; width:95%;
     }
 
     #Dsignin{
@@ -34,18 +35,19 @@
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
-    #Dropdown{  display:none;
-        position:absolute; right:35px; padding:40px 18px 20px 18px;
+    #Dropdown{
+        transition-duration:0.25s; overflow:hidden;
+        position:absolute; top:80px; padding:40px 18px 20px 18px;
         flex-direction:column; justify-content:flex-start; align-items:flex-start; width:260px; height:400px;
         background-color:white; box-shadow:1px 2px 4px 2px #E8E8E8; border-radius:8px; box-sizing:border-box;
     }
 
     .Dopts{
-        font-size:22px; padding:15px 10px; border-bottom:0.5px grey solid;
+        font-size:22px; padding:15px 10px; border-bottom:0.5px grey solid; width:85%;
     }
 
     #Dbtm{
-        margin-top:30px;
+        margin-top:30px; width:95%;
     }
 
     #Dsignin{

@@ -3,19 +3,42 @@ import { useState } from 'react';
 import TopNavBar from './TopNavBar/TopNavBar';
 import Dropdown from './Dropdown/Dropdown';
 import Home from './HomePage/HomePage';
+import Order from './Order/Order';
 
 function App() {
-	const setActiveTab = () => {
+	const [activetab, setActivetab] = useState('home');
+	const [dropdown, setDropdown] = useState(false);
 
-	}
+
 
   	return (
     	<div id="App">
 			<TopNavBar
-				setActiveTab={setActiveTab}
+				activetab={activetab}
+				changeTab={(tab)=>{ setActivetab(tab); }}
+				changeDropdown={(state)=>{ setDropdown(state); }}
+				dropdown={dropdown}
 			/>
-			<Dropdown/>
-			<Home/>
+			
+			{
+				activetab==='home'?
+					<Home
+						activetab={activetab}
+					/>
+				:activetab==='order'?
+					<Order
+						activetab={activetab}
+					/>
+				:''
+			}
+			
+			<Dropdown
+				activetab={activetab}
+				changeTab={(tab)=>{ setActivetab(tab); }}
+				changeDropdown={(state)=>{ setDropdown(state); }}
+				dropdown={dropdown}
+			/>
+			
     	</div>
  	);
 }

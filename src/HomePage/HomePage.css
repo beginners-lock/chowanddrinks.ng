@@ -16,7 +16,7 @@
 @media only screen and (max-width: 500px) {/*MOBILE*/   
     #Home{ 
         width:100vw; overflow-x:hidden; padding:0px 5px;
-        display:flex; flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
+        flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
     }
 
     #Hrow1{
@@ -131,7 +131,7 @@
 @media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
     #Home{ 
         width:100vw; overflow-x:hidden; padding:0px 40px;
-        display:flex; flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
+        flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
     }
 
     #Hrow1{
@@ -247,7 +247,7 @@
 @media only screen and (min-width: 1200px) {/*LAPTOP*/
     #Home{ 
         width:100vw; overflow-x:hidden; padding:0px 30px;
-        display:flex; flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
+        flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
     }
 
     #Home::-webkit-scrollbar{

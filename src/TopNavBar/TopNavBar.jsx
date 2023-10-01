@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TopNavBar.css';
 import { theme } from '../theme';
 
-export default function () {
-	const [activetab, setActivetab] = useState('Home');
+export default function TopNavBar(props) {
+    useEffect(()=>{
+
+    }, []);
 
     return (
         <div id="TopNavBar">
@@ -13,24 +15,24 @@ export default function () {
             </div>
 
             <div id="TNBmiddle">
-                <div className='TNBopts'>
-                    <div style={{color:activetab==='Home'?theme.red1:theme.black1}}>Home</div>
-                    <div className='TNBdivs' style={{backgroundColor:activetab==='Home'?theme.red1:theme.transparent}}></div>
+                <div className='TNBopts' onClick={()=>{props.changeTab('home');}}>
+                    <div style={{color: props.activetab==='home'?theme.red1:theme.black1}}>Home</div>
+                    <div className='TNBdivs' style={{backgroundColor:props.activetab==='home'?theme.red1:theme.transparent}}></div>
                 </div>
 
-                <div className='TNBopts'>
-                    <div style={{color:activetab==='Order'?theme.red1:theme.black1}}>Order</div>
-                    <div className='TNBdivs' style={{backgroundColor:activetab==='Order'?theme.red1:theme.transparent}}></div>
+                <div className='TNBopts' onClick={()=>{props.changeTab('order');}}>
+                    <div style={{color:props.activetab==='order'?theme.red1:theme.black1}}>Order</div>
+                    <div className='TNBdivs' style={{backgroundColor:props.activetab==='order'?theme.red1:theme.transparent}}></div>
                 </div>
 
-                <div className='TNBopts'>
-                    <div style={{color:activetab==='Rent-a-chef'?theme.red1:theme.black1}}>Rent-a-chef</div>
-                    <div className='TNBdivs' style={{backgroundColor:activetab==='Rent-a-chef'?theme.red1:theme.transparent}}></div>
+                <div className='TNBopts' onClick={()=>{props.changeTab('rentachef');}}>
+                    <div style={{color:props.activetab==='rentachef'?theme.red1:theme.black1}}>Rent-a-chef</div>
+                    <div className='TNBdivs' style={{backgroundColor:props.activetab==='rentachef'?theme.red1:theme.transparent}}></div>
                 </div>
 
-                <div className='TNBopts'>
-                    <div style={{color:activetab==='History'?theme.red1:theme.black1}}>History</div>
-                    <div className='TNBdivs' style={{backgroundColor:activetab==='History'?theme.red1:theme.transparent}}></div>
+                <div className='TNBopts' onClick={()=>{props.changeTab('history');}}>
+                    <div style={{color:props.activetab==='history'?theme.red1:theme.black1}}>History</div>
+                    <div className='TNBdivs' style={{backgroundColor:props.activetab==='history'?theme.red1:theme.transparent}}></div>
                 </div>
                 
             </div>
@@ -40,25 +42,9 @@ export default function () {
                 <div id="TNBaccountpic"></div>
             </div>
 
-            <div id='TNBburger'>
+            <div id='TNBburger' onClick={()=>{ props.changeDropdown(!props.dropdown) }}>
 
             </div>
         </div>
     );
 }
-
-/**
- * 
- * <div style={{color:activetab==='Order'?theme.red1:theme.black1}} className='TNBopts'>
-                    Order
-                    <div style={{borderBottomColor:activetab==='Home'?theme.red1:theme.transparent, width:activetab==='Home'?'100%':'0px', height:'5px'}}></div>
-                </div>
-                <div style={{color:activetab==='Rent'?theme.red1:theme.black1}} className='TNBopts'>
-                    Rent-a-chef
-                    <div style={{borderBottomColor:activetab==='Home'?theme.red1:theme.transparent, width:activetab==='Home'?'100%':'0px', height:'5px'}}></div>
-                </div>
-                <div style={{color:activetab==='History'?theme.red1:theme.black1}} className='TNBopts'>
-                    History
-                    <div style={{borderBottomColor:activetab==='Home'?theme.red1:theme.transparent, width:activetab==='Home'?'100%':'0px', height:'5px'}}></div>
-                </div>
- */

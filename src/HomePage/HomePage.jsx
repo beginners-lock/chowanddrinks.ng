@@ -2,9 +2,9 @@ import React from 'react';
 import { theme } from '../theme';
 import './HomePage.css';
 
-export default function Home() {
+export default function Home(props) {
     return (
-        <div id="Home">
+        <div id="Home" style={{display:props.activetab==='home'?'flex':'none'}}>
             <div id="Hrow1">
                 <div id="HR1left">
                     <h5 className="special1" style={{color:theme.red1, padding:'8px 20px', borderRadius:'30px'}}>

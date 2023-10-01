@@ -1,0 +1,396 @@
+@font-face {
+	font-family:'Rubik Bold';
+	src: url('./../../fonts/Rubik-Bold.ttf');
+}
+
+@font-face {
+	font-family:'Rubik Regular';
+	src: url('./../../fonts/Rubik-Regular.ttf');
+}
+
+@media only screen and (max-width: 500px) {/*MOBILE*/
+    #Order{
+        box-sizing:border-box; width:100%; height:100%; overflow:hidden; padding:10px 10px 0px 10px;
+        flex-direction:row; align-items:flex-start; justify-content:space-between;
+    }
+
+    #OrderMain{
+        width:100%; height:100%; box-sizing:border-box;
+        display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+    }
+
+    #OrderCategories{
+        width:100%; height:80px; 
+        display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
+    }
+
+    .OCchild{
+        width:60px; height:60px; background-color:rgba(180,0,0,0.2); border-radius:10px;
+        display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0px 15px 0px 0px;
+    }
+
+    .OCimg{ background-color:var(--red1); width:20px; height:20px; border-radius:50%; }
+
+    .OCtext{ font-size:12px; font-family:'Rubik Bold'; margin-top:8px; }
+
+    #OrderDishes{
+        display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+        width:100%; height:85%; box-sizing:border-box; overflow:hidden; padding:0;
+    }
+
+    #ODparent{
+        width:99%; height:100%; overflow-y:auto; overflow-x:hidden;
+        display:flex; flex-direction:row; align-items:flex-start; justify-content:flex-start; flex-wrap:wrap;
+    }
+
+    #ODparent::-webkit-scrollbar{
+        width:5px; background-color:whitesmoke; border-radius:15px;
+        box-sizing:border-box; margin-right:20px; cursor:pointer;
+    }
+
+    #ODparent::-webkit-scrollbar-thumb{
+        background-color:var(--red1); width:5px; border-radius:5px;
+    }
+
+    #ODparent::-webkit-scrollbar-button{
+        display:none;
+    }
+
+    .ODchild{
+        width:160px; height:180px; margin:0px 20px 20px 0px; box-sizing:border-box;
+        overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start;
+    }
+
+    .ODimg{
+        width:100%; height:100px; border-radius:10px; background-color:rgb(240, 240, 240);
+    }
+
+    .ODtitle{
+        font-family:'Rubik Bold'; font-size:14px; margin-top:20px;;
+    }
+
+    .ODprice{
+        font-family: 'Rubik Regular'; font-size:14px; color:grey;
+    }
+
+    #OrderRight{
+        position:absolute; background-color:white; padding:15px 5px 5px 5px;
+        width:100%; height:92%; box-sizing:border-box; overflow:hidden; transition-duration:0.25s;
+        display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    }
+
+    #OrderSearch{
+        width:90%; font-family:'Rubik Regular'; font-size:14px; border:none;
+        background-color:rgb(250, 250, 250); padding:8px; color:grey; border-radius:10px;
+        outline:none; border:1px rgb(220, 220, 220) solid; box-sizing:border-box;
+    }
+
+    #OrderList{
+        display:flex; flex-direction:column; width:97%; height:100%;
+        justify-content:flex-start; align-items:center;
+    }
+
+    #OLtotal{ 
+        width:96%; display:flex; flex-direction:row; align-items:center; justify-content:space-between; 
+        font-family:'Rubik Bold';
+    }
+
+    #OLparent{ 
+        width:98%; height:62%; overflow-y:auto; overflow-x:hidden;
+    }
+
+    #OLparent::-webkit-scrollbar{
+        width:5px; background-color:whitesmoke; border-radius:15px;
+        box-sizing:border-box; margin-right:20px; cursor:pointer;
+    }
+
+    #OLparent::-webkit-scrollbar-thumb{
+        background-color:var(--red1); width:5px; border-radius:5px;
+    }
+
+    #OLparent::-webkit-scrollbar-button{
+        display:none;
+    }
+
+    .OLchild{ 
+        width:95%; height:30px; display:flex; flex-direction:row; align-items:center; justify-content:space-between;
+        margin:0px 0px 10px 0px;
+    }
+    .OLname{ width:60%; font-size:14px;}
+    .OLqty{width:6%; font-size:14px; text-align:right;}
+    .OLprice{width:14%; font-size:14px; text-align:right; font-family:'Rubik Bold';}
+    .delOLchild{ width:20px; height:20px; background-color:rgba(180,0,0,0.2); border-radius:50%; cursor:pointer;}
+
+    #orderpayment{
+        width:250px; border-radius:10px; font-size:14px; color:white; justify-content:center;
+        background-color:var(--red1); padding:12px; display:flex; flex-direction:row; align-items:center;
+        font-family:'Rubik Regular'; cursor:pointer;
+    }
+
+    #OLtitle, #ODheader{ font-family:'Rubik Bold'; width:100%; }
+    
+    #ordertoggle{ 
+        position:absolute; width:35px; height:35px; border-radius:50%; background-color:var(--red1); 
+        top:92%; right:8%;
+    }
+}
+
+
+
+@media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
+    #Order{
+        box-sizing:border-box; width:100%; height:100%; overflow:hidden; padding:10px 10px 0px 10px;
+        flex-direction:row; align-items:flex-start; justify-content:space-between;
+    }
+
+    #OrderMain{
+        width:100%; height:100%; box-sizing:border-box;
+        display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+    }
+
+    #OrderCategories{
+        width:100%; height:140px; 
+        display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
+    }
+
+    .OCchild{
+        width:90px; height:120px; background-color:rgba(180,0,0,0.2); border-radius:20px;
+        display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0px 15px;
+    }
+
+    .OCimg{ background-color:var(--red1); width:30px; height:30px; border-radius:50%; }
+
+    .OCtext{ font-size:16px; font-family:'Rubik Bold'; margin-top:12px; }
+
+    #OrderDishes{
+        display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+        width:100%; height:85%; box-sizing:border-box; overflow:hidden; padding:0;
+    }
+
+    #ODheader{ font-size:24px; }
+
+    #ODparent{
+        width:99%; height:100%; overflow-y:auto; overflow-x:hidden;
+        display:flex; flex-direction:row; align-items:flex-start; justify-content:flex-start; flex-wrap:wrap;
+    }
+
+    #ODparent::-webkit-scrollbar{
+        width:5px; background-color:whitesmoke; border-radius:15px;
+        box-sizing:border-box; margin-right:20px; cursor:pointer;
+    }
+
+    #ODparent::-webkit-scrollbar-thumb{
+        background-color:var(--red1); width:5px; border-radius:5px;
+    }
+
+    #ODparent::-webkit-scrollbar-button{
+        display:none;
+    }
+
+    .ODchild{
+        width:280px; height:240px; margin:0px 30px 20px 0px; box-sizing:border-box;
+        overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start;
+    }
+
+    .ODimg{
+        width:100%; height:160px; border-radius:10px; background-color:rgb(240, 240, 240);
+    }
+
+    .ODtitle{
+        font-family:'Rubik Bold'; font-size:18px; margin-top:20px;;
+    }
+
+    .ODprice{
+        font-family: 'Rubik Regular'; font-size:18px; color:grey; margin-top:5px;
+    }
+
+    #OrderRight{
+        position:absolute; background-color:white; padding:30px 10px 10px 10px;
+        width:100%; height:92%; box-sizing:border-box; overflow:hidden; transition-duration:0.25s;
+        display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    }
+
+    #OrderSearch{
+        width:90%; font-family:'Rubik Regular'; font-size:20px; border:none;
+        background-color:rgb(250, 250, 250); padding:15px; color:grey; border-radius:10px;
+        outline:none; border:1px rgb(220, 220, 220) solid; box-sizing:border-box;
+    }
+
+    #OLtitle{ font-size:24px; }
+
+    #OrderList{
+        display:flex; flex-direction:column; width:97%; height:100%;
+        justify-content:flex-start; align-items:center;
+    }
+
+    #OLtotal{ 
+        width:96%; display:flex; flex-direction:row; align-items:center; justify-content:space-between; 
+        font-family:'Rubik Bold';
+    }
+
+    #OLparent{ 
+        width:98%; height:62%; overflow-y:auto; overflow-x:hidden;
+    }
+
+    #OLparent::-webkit-scrollbar{
+        width:5px; background-color:whitesmoke; border-radius:15px;
+        box-sizing:border-box; margin-right:20px; cursor:pointer;
+    }
+
+    #OLparent::-webkit-scrollbar-thumb{
+        background-color:var(--red1); width:5px; border-radius:5px;
+    }
+
+    #OLparent::-webkit-scrollbar-button{
+        display:none;
+    }
+
+    .OLchild{ 
+        width:95%; height:30px; display:flex; flex-direction:row; align-items:center; justify-content:space-between;
+        margin:0px 0px 25px 0px;
+    }
+    .OLname{ width:60%; font-size:22px;}
+    .OLqty{width:6%; font-size:22px; text-align:right;}
+    .OLprice{width:14%; font-size:22px; text-align:right; font-family:'Rubik Bold';}
+    .delOLchild{ width:30px; height:30px; background-color:rgba(180,0,0,0.2); border-radius:50%; cursor:pointer;}
+
+    #OLtotalL, #OLtotalR{ font-size:24px; }
+
+    #orderpayment{
+        width:300px; border-radius:10px; font-size:20px; color:white; justify-content:center;
+        background-color:var(--red1); padding:20px; display:flex; flex-direction:row; align-items:center;
+        font-family:'Rubik Regular'; cursor:pointer; margin-top:20px;
+    }
+
+    #OLtitle, #ODheader{ font-family:'Rubik Bold'; width:100%; }
+    
+    #ordertoggle{ 
+        position:absolute; width:48px; height:48px; border-radius:50%; background-color:var(--red1); 
+        top:92%; right:8%;
+    }
+}
+
+
+
+@media only screen and (min-width: 1200px) {/*LAPTOP*/
+    #Order{
+        box-sizing:border-box; width:100%; height:100%; overflow:hidden;
+        flex-direction:row; align-items:flex-start; justify-content:space-between;
+    }
+
+    #OrderMain{
+        width:72%; height:100%; box-sizing:border-box;
+        display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+    }
+
+    #OrderCategories{
+        width:100%; height:100px; 
+        display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
+    }
+
+    .OCchild{
+        width:80px; height:100px; background-color:rgba(180,0,0,0.2); border-radius:20px;
+        display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0px 20px;
+    }
+
+    .OCimg{ background-color:var(--red1); width:30px; height:30px; border-radius:50%; }
+
+    .OCtext{ font-size:14px; font-family:'Rubik Bold'; margin-top:8px; }
+
+    #OrderDishes{
+        display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+        width:100%; height:85%; box-sizing:border-box; overflow:hidden; padding:0;
+    }
+
+    #ODparent{
+        width:99%; height:100%; overflow-y:auto; overflow-x:hidden;
+        display:flex; flex-direction:row; align-items:flex-start; justify-content:flex-start; flex-wrap:wrap;
+    }
+
+    #ODparent::-webkit-scrollbar{
+        width:5px; background-color:whitesmoke; border-radius:15px;
+        box-sizing:border-box; margin-right:20px; cursor:pointer;
+    }
+
+    #ODparent::-webkit-scrollbar-thumb{
+        background-color:var(--red1); width:5px; border-radius:5px;
+    }
+
+    #ODparent::-webkit-scrollbar-button{
+        display:none;
+    }
+
+    .ODchild{
+        width:275px; height:190px; margin:0px 20px 20px 0px; box-sizing:border-box;
+        overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start;
+    }
+
+    .ODimg{
+        width:100%; height:150px; border-radius:10px; background-color:rgb(240, 240, 240);
+    }
+
+    .ODtitle{
+        font-family:'Rubik Bold'; font-size:14px; margin-top:20px;;
+    }
+
+    .ODprice{
+        font-family: 'Rubik Regular'; font-size:14px; color:grey;
+    }
+
+    #OrderRight{
+        width:27%; height:100%; box-sizing:border-box; overflow:hidden;
+        display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    }
+
+    #OrderSearch{
+        width:100%; font-family:'Rubik Regular'; font-size:14px; border:none;
+        background-color:rgb(250, 250, 250); padding:8px; color:grey; border-radius:10px;
+        outline:none; border:1px rgb(220, 220, 220) solid; box-sizing:border-box;
+    }
+
+    #OrderList{
+        display:flex; flex-direction:column; width:97%; height:100%;
+        justify-content:flex-start; align-items:center;
+    }
+
+    #OLtotal{ 
+        width:96%; display:flex; flex-direction:row; align-items:center; justify-content:space-between; 
+        font-family:'Rubik Bold';
+    }
+
+    #OLparent{ 
+        width:98%; height:62%; overflow-y:auto; overflow-x:hidden;
+    }
+
+    #OLparent::-webkit-scrollbar{
+        width:5px; background-color:whitesmoke; border-radius:15px;
+        box-sizing:border-box; margin-right:20px; cursor:pointer;
+    }
+
+    #OLparent::-webkit-scrollbar-thumb{
+        background-color:var(--red1); width:5px; border-radius:5px;
+    }
+
+    #OLparent::-webkit-scrollbar-button{
+        display:none;
+    }
+
+    .OLchild{ 
+        width:95%; height:30px; display:flex; flex-direction:row; align-items:center; justify-content:space-between;
+        margin:0px 0px 10px 0px;
+    }
+    .OLname{ width:60%; font-size:14px;}
+    .OLqty{width:6%; font-size:14px; text-align:right;}
+    .OLprice{width:14%; font-size:14px; text-align:right; font-family:'Rubik Bold';}
+    .delOLchild{ width:20px; height:20px; background-color:rgba(180,0,0,0.2); border-radius:50%; cursor:pointer;}
+
+    #orderpayment{
+        width:250px; border-radius:10px; font-size:14px; color:white; justify-content:center;
+        background-color:var(--red1); padding:12px; display:flex; flex-direction:row; align-items:center;
+        font-family:'Rubik Regular'; cursor:pointer; margin-top:10px;
+    }
+
+    #OLtitle, #ODheader{ font-family:'Rubik Bold'; width:100%; }
+
+    #ordertoggle{ display:none; }
+}
