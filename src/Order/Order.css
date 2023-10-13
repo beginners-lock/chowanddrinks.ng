@@ -133,6 +133,11 @@
         position:absolute; width:35px; height:35px; border-radius:50%; background-color:var(--red1); 
         top:92%; right:8%;
     }
+
+    #addneworder{ 
+        width:auto; background-color:var(--red1); border-radius:10px; padding:10px 20px; color:white; font-size:14px;
+        cursor:pointer; margin-top:20px;
+    }
 }
 
 
@@ -268,6 +273,11 @@
         position:absolute; width:48px; height:48px; border-radius:50%; background-color:var(--red1); 
         top:92%; right:8%;
     }
+
+    #addneworder{ 
+        width:50%; background-color:var(--red1); border-radius:10px; padding:15px 20px; color:white; font-size:20px;
+        cursor:pointer; margin-top:10px;
+    }
 }
 
 
@@ -289,7 +299,7 @@
     }
 
     .OCchild{
-        width:80px; height:100px; background-color:rgba(180,0,0,0.2); border-radius:20px;
+        width:80px; height:100px; background-color:rgba(180,0,0,0.2); border-radius:20px; cursor:pointer;
         display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0px 20px;
     }
 
@@ -321,7 +331,7 @@
     }
 
     .ODchild{
-        width:275px; height:190px; margin:0px 20px 20px 0px; box-sizing:border-box;
+        width:275px; height:190px; margin:0px 20px 20px 0px; box-sizing:border-box; cursor:pointer;
         overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start;
     }
 
@@ -380,7 +390,7 @@
         margin:0px 0px 10px 0px;
     }
     .OLname{ width:60%; font-size:14px;}
-    .OLqty{width:6%; font-size:14px; text-align:right;}
+    .OLqty{width:12%; font-size:14px; text-align:right;}
     .OLprice{width:14%; font-size:14px; text-align:right; font-family:'Rubik Bold';}
     .delOLchild{ width:20px; height:20px; background-color:rgba(180,0,0,0.2); border-radius:50%; cursor:pointer;}
 
@@ -393,4 +403,9 @@
     #OLtitle, #ODheader{ font-family:'Rubik Bold'; width:100%; }
 
     #ordertoggle{ display:none; }
+
+    #addneworder{ 
+        width:auto; background-color:var(--red1); border-radius:10px; padding:10px 20px; color:white; font-size:14px;
+        cursor:pointer;
+    }
 }

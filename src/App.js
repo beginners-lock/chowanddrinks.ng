@@ -4,9 +4,11 @@ import TopNavBar from './TopNavBar/TopNavBar';
 import Dropdown from './Dropdown/Dropdown';
 import Home from './HomePage/HomePage';
 import Order from './Order/Order';
+import Authentication from './Authentication/Authentication';
+import Notification from './Notification/Notification';
 
 function App() {
-	const [activetab, setActivetab] = useState('home');
+	const [activetab, setActivetab] = useState('authentication');
 	const [dropdown, setDropdown] = useState(false);
 
 
@@ -27,6 +29,14 @@ function App() {
 					/>
 				:activetab==='order'?
 					<Order
+						activetab={activetab}
+					/>
+				:activetab==='authentication'?
+					<Authentication
+						activetab={activetab}
+					/>
+				:activetab==='notification'?
+					<Notification
 						activetab={activetab}
 					/>
 				:''

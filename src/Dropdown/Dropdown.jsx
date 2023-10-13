@@ -10,6 +10,7 @@ export default function Dropdown(props) {
             <div className='Dopts' onClick={()=>{props.changeTab('order'); props.changeDropdown(false);}}>Order</div>
             <div className='Dopts' onClick={()=>{props.changeTab('rentachef'); props.changeDropdown(false);}}>Rent-a-chef</div>
             <div className='Dopts' onClick={()=>{props.changeTab('history'); props.changeDropdown(false);}}>History</div>
+            <div className='Dopts' style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'flex-start'}} onClick={()=>{props.changeTab('notification'); props.changeDropdown(false);}}>Notifications<div style={{width:'8px', height:'8px', backgroundColor:'#F00000', borderRadius:'50%', marginLeft:6}}></div></div>
             <div id='Dbtm'>
                 <div id='Dsignin'>Sigin</div>
                 <div id='Daccount'></div>
