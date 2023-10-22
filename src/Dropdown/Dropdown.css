@@ -11,52 +11,68 @@
 @media only screen and (max-width: 500px) {/*MOBILE*/
     #Dropdown{ overflow:hidden;
         transition-duration:0.25s;
-        position:absolute; top:50px; padding:25px 10px 10px 10px;
-        flex-direction:column; justify-content:flex-start; align-items:flex-start; width:150px; height:280px;
+        position:absolute; top:50px; padding:25px 10px 20px 10px; margin:auto;
+        flex-direction:column; justify-content:flex-start; align-items:flex-start; width:92%; height:auto;
         background-color:white; box-shadow:1px 2px 4px 2px #E8E8E8; border-radius:8px; box-sizing:border-box;
     }
 
     .Dopts{
-        font-size:15px; padding:8px 5px; border-bottom:0.1px grey solid; width:85%;
+        font-size:15px; padding:8px 5px; border-bottom:0.1px grey solid; font-family:'Rubik Bold';
     }
 
     #Dbtm{
-        margin-top:20px; width:95%;
+        margin-top:20px; width:auto; transition-duration:0.25s;
+        display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
     }
 
     #Dsignin{
-        width:100%; background-color:var(--red1); color:var(--white1); text-align:center; font-size:15px;
-        padding:8px 0px; border-radius:8px;
+        width:100%; text-align:center; font-size:15px; font-family:'Rubik Bold';
     }
 
     #Daccount{
+        background-color:red; color:white; min-width:24px; min-height:24px; max-width:24px; max-height:24px; border-radius:50%;
+        flex-direction:row; align-items:center; justify-content:center; transition-duration:0.25s; padding:0; font-family:'Rubik Bold';
+        margin-right:5px;
+    }
 
+    #dropdownspecial{ 
+        margin-top:15px; font-family:'Rubik Bold'; font-size:14px; margin-right:10px;
+        display:'flex'; flex-direction:row; box-sizing:border-box;
+        align-items:center; justify-content:flex-end; width:100%; padding:0px 5px;  
     }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
     #Dropdown{
         transition-duration:0.25s; overflow:hidden;
-        position:absolute; top:80px; padding:40px 18px 20px 18px;
-        flex-direction:column; justify-content:flex-start; align-items:flex-start; width:260px; height:460px;
+        position:absolute; top:80px; padding:40px 20px 30px 20px;
+        flex-direction:column; justify-content:flex-start; align-items:flex-start; width:92%; height:auto;
         background-color:white; box-shadow:1px 2px 4px 2px #E8E8E8; border-radius:8px; box-sizing:border-box;
     }
 
     .Dopts{
-        font-size:22px; padding:15px 10px; border-bottom:0.5px grey solid; width:85%;
+        font-size:22px; padding:15px 10px; border-bottom:0.5px grey solid; width:auto;
+        font-family:'Rubik Bold';
     }
 
     #Dbtm{
-        margin-top:30px; width:95%;
+        margin-top:30px; width:auto; transition-duration:0.25s; padding:5px;
+        display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
     }
 
     #Dsignin{
-        width:100%; background-color:var(--red1); color:var(--white1); text-align:center; font-size:22px;
-        padding:15px 0px; border-radius:10px;
+        width:100%; text-align:center; font-size:22px; font-family:'Rubik Bold';
     }
 
     #Daccount{
+        background-color:red; color:white; min-width:30px; min-height:30px; max-width:30px; max-height:30px; border-radius:50%;
+        flex-direction:row; align-items:center; justify-content:center; transition-duration:0.25s; padding:0; font-family:'Rubik Bold';
+        font-size:20px; margin-right:8px;
+    }
 
+    #dropdownspecial{ 
+        margin-top:20px; font-family:'Rubik Bold'; font-size:22px; margin-right:20px; display:'flex'; flex-direction:row;
+        align-items:center; justify-content:flex-end; width:100%; padding:0px 10px; box-sizing:border-box;
     }
 }
 

@@ -9,77 +9,92 @@
 }
 
 @media only screen and (max-width: 500px) {/*MOBILE*/
-    #Notification{ 
-        width:100vw; height:100%; overflow-x:hidden; padding:0px 5px; display:flex; margin-top:20px;
+    #History{ 
+        width:100vw; overflow-x:hidden; padding:0px 5px; display:flex; margin-top:20px;
         flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
     }
 
-    .NotificChild{
+    .HistChild{
         width:95%; display:flex; flex-direction:row; align-items:center; margin-top:5px; margin-bottom:10px;
         justify-content:space-between; padding:10px; box-sizing:border-box; border-bottom:2px grey solid;
+        cursor:pointer;
     }
 
-    .NCmsg{
+    .HCref{
         font-family:'Rubik Regular'; font-size:12px;
     }
 
-    .NCtime{
+    .HCpaid{
+        font-family:'Rubik Bold'; color:green; font-size:12px;
+    }
+
+    .HCtime{
         font-family:'Rubik Regular'; color:grey; font-size:12px;
     }
 }
 
 
 @media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
-    #Notification{ 
+    #History{ 
         width:100vw; overflow-x:hidden; padding:0px 20px; display:flex; margin-top:20px;
         flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box; 
     }
 
-    .NotificChild{
+    .HistChild{
         width:100%; display:flex; flex-direction:row; align-items:center; margin-top:5px; margin-bottom:10px;
         justify-content:space-between; padding:20px; box-sizing:border-box; border-bottom:2px grey solid;
+        cursor:pointer;
     }
 
-    .NCmsg{
+    .HCref{
         font-family:'Rubik Regular'; font-size:20px;
     }
 
-    .NCtime{
+    .HCpaid{
+        font-family:'Rubik Bold'; color:green; font-size:20px;
+    }
+
+    .HCtime{
         font-family:'Rubik Regular'; color:grey; font-size:20px;
     }
 }
 
 
 @media only screen and (min-width: 1200px) {/*LAPTOP*/
-    #Notification{ 
+    #History{ 
         width:100vw; overflow-x:hidden; padding:0px 30px; display:flex;
         flex-direction:column; align-items:center; justify-content:flex-start; box-sizing:border-box;
         overflow-y:auto; overflow-x:none; height:100%;
     }
 
-    #Notification::-webkit-scrollbar{
+    #History::-webkit-scrollbar{
         width:5px; background-color:whitesmoke; border-radius:15px;
         box-sizing:border-box; margin-right:20px; cursor:pointer;
     }
 
-    #Notification::-webkit-scrollbar-thumb{
+    #History::-webkit-scrollbar-thumb{
         background-color:var(--red1); width:5px; border-radius:5px;
     }
 
-    #Notification::-webkit-scrollbar-button{
+    #History::-webkit-scrollbar-button{
         display:none;
     }
 
-    .NotificChild{
+    .HistChild{
         width:80%; display:flex; flex-direction:row; align-items:center; margin-top:5px; margin-bottom:10px;
         justify-content:space-between; padding:10px 20px; box-sizing:border-box; border-bottom:2px grey solid;
+        cursor:pointer;
     }
 
-    .NCmsg{
+    .HCref{
         font-family:'Rubik Regular';
     }
 
-    .NCtime{
+    .HCpaid{
+        font-family:'Rubik Bold'; color:green;
+    }
+
+    .HCtime{
         font-family:'Rubik Regular'; color:grey;
     }
 }
