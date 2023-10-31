@@ -36,7 +36,7 @@ const Notification = (props) => {
 		}else{
 			props.unsetUser();
 		}
-	}, []);	
+	}, [props]);	
 
 	const timeformatter = (datetime) => {
 		if(datetime){

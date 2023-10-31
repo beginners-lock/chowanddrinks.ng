@@ -36,7 +36,7 @@ export const History = (props) => {
 		}else{
 			props.unsetUser();
 		}
-    }, []);
+    }, [props]);
 
     const timeformatter = (datetime) => {
         if(datetime){

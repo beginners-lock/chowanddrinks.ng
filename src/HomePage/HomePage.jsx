@@ -26,7 +26,7 @@ export default function Home(props) {
                 <div id="HR2children">
                     <div className='HR2child'>
                         <div className='HR2img' style={{backgroundColor:theme.yellow1, overflow:'hidden', justifyContent:'center', alignItems:'center'}}>
-                            <img src="order.jpg" style={{width:'100%', height:'auto'}}/>
+                            <img alt="order" src="order.jpg" style={{width:'100%', height:'auto'}}/>
                         </div>
                         <h4 className='HR2text1'>Easy To Order</h4>
                         <h5 className='HR2text2'>Just a few steps to get your order ready</h5>
@@ -34,7 +34,7 @@ export default function Home(props) {
             
                     <div className='HR2child'>
                         <div className='HR2img' style={{backgroundColor:theme.yellow1, overflow:'hidden', justifyContent:'center', alignItems:'center'}}>
-                            <img src="delivery.jpg" style={{width:'auto', height:'100%'}}/>
+                            <img alt="delivery" src="delivery.jpg" style={{width:'auto', height:'100%'}}/>
                         </div>
                         <h4 className='HR2text1'>Speedy Delivery</h4>
                         <h5 className='HR2text2'>Delivery that is not just on time but even faster</h5>
@@ -42,7 +42,7 @@ export default function Home(props) {
                     
                     <div className='HR2child'>
                         <div className='HR2img' style={{backgroundColor:theme.yellow1, overflow:'hidden', justifyContent:'center', alignItems:'center'}}>
-                            <img src="quality.jpg" style={{width:'100%', height:'auto'}}/>
+                            <img alt="quality" src="quality.jpg" style={{width:'100%', height:'auto'}}/>
                         </div>
                         <h4 className='HR2text1'>Top Notch Quality</h4>
                         <h5 className='HR2text2'>Even with the rush we still keep our quality</h5>
@@ -75,15 +75,15 @@ export default function Home(props) {
                     </div>
 
                     <div className="HR3Rchild">
-                        <img src="snacks.jpeg" alt="homefood" style={{height:'100%', width:'auto'}}/>
+                        <img src="snacks.jpeg" alt="homesnacks" style={{height:'100%', width:'auto'}}/>
                     </div>
 
                     <div className="HR3Rchild">
-                        <img src="drinks.jpeg" alt="homefood" style={{height:'100%', width:'auto'}}/>
+                        <img src="drinks.jpeg" alt="homedrinks" style={{height:'100%', width:'auto'}}/>
                     </div>
 
                     <div className="HR3Rchild">
-                        <img src="cakes.jpeg" alt="homefood" style={{height:'100%', width:'auto'}}/>
+                        <img src="cakes.jpeg" alt="homecakes" style={{height:'100%', width:'auto'}}/>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@ export default function Home(props) {
                     </h1>
                     <div className='redbtn1' style={{backgroundColor:theme.red1}} onClick={()=>{props.changeTab('authentication');}}>Sign up</div>
                 </div>
-                <img id="HR4right" src="homeimg1.jpeg" style={{backgroundColor:theme.yellow2}}/>
+                <img alt="homeimg1" id="HR4right" src="homeimg1.jpeg" style={{backgroundColor:theme.yellow2}}/>
             </div>
 
             <div id="footer">

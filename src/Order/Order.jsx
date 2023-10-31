@@ -4,7 +4,7 @@ import './Order.css';
 import LoadingSpinner from '../Spinner/Spinner';
 
 export default function Order(props) {
-    const [device, setDevice] = useState( (window.innerWidth<=500)? 'mobile' : (window.innerWidth>=600 && window.innerWidth<=1100) ? 'tablet' : 'laptop' ); 
+    const [device, setDevice] = useState(''); 
     const [showorderlist, setShoworderlist] = useState(false);
     const [selectedrow, setSelectedrow] = useState(0);
     const [unseenorder, setUnseenorder] = useState(false);
@@ -26,6 +26,7 @@ export default function Order(props) {
     const [orderarray, setOrderarry] = useState([{names:[], prices:[], plates:10, total:0}]);
 
     useEffect(()=>{
+        setDevice((window.innerWidth<=500)? 'mobile' : (window.innerWidth>=600 && window.innerWidth<=1100) ? 'tablet' : 'laptop');
         setLoadingmenu(true);
 
         try{
@@ -59,7 +60,7 @@ export default function Order(props) {
             console.log('An error occured in Order useEffect: '+e);
             props.changeTab('errorpage');
         }
-    }, []);
+    }, [props]);
 
     const updateLS = () => {
         localStorage.setItem('cadngorder', JSON.stringify(orderarray));
@@ -289,7 +290,7 @@ export default function Order(props) {
                 <div id="togglealert" style={{display:unseenorder?'flex':'none'}}></div>
             </div>
             <div id="deliverypage" style={{right:dockdelivery?-window.innerWidth:0}}>
-                <img id="DPdocker" src="rightarrow.png" onClick={()=>{setDockdelivery(true);}}/>
+                <img id="DPdocker" alt="dock" src="rightarrow.png" onClick={()=>{setDockdelivery(true);}}/>
                 <div id="DPtext1">NOTE: Delivery is only available within Lagos</div>
                 <div id="DPmain">
                     <div id="DPleft">

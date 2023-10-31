@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import './Dropdown.css';
 
 export default function Dropdown(props) {
-    const [device, setDevice] = useState( (window.innerWidth<=500)? 'mobile' : (window.innerWidth>=600 && window.innerWidth<=1100) ? 'tablet' : 'laptop' ); 
+    const [device, setDevice] = useState(''); 
 
     const signin = () => {
+        //Set thte initial width of the device
+        setDevice((window.innerWidth<=500)? 'mobile' : (window.innerWidth>=600 && window.innerWidth<=1100) ? 'tablet' : 'laptop');
+        
         if(props.activeuser===null){
             props.changeDropdown(false);
             props.changeTab('authentication');

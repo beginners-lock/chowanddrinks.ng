@@ -23,7 +23,7 @@ const ChangePassword = (props) => {
         }else{
             props.unsetUser();
         }
-    }, []);
+    }, [props]);
 
     const resetWarning = () => {
         setPass1warning('');
