@@ -16,8 +16,8 @@ const Authentication = (props) => {
     const [page1, setPage1] = useState('login')
     const [page2, setPage2] = useState('create');
 
-    const [otpwarning1, setOtpwarning1] = useState('');
-    const [otpwarning2, setOtpwarning2] = useState('');
+    const [otpwarning1, setOtpwarning1] = useState('He how far....');
+    const [otpwarning2, setOtpwarning2] = useState('Hey how far bro...');
     const [otploading, setOtploading] = useState(false);
 
     const [forgot1, setForgot1] = useState('');
@@ -244,7 +244,6 @@ const Authentication = (props) => {
                     console.log('An error occured in forgotswitcher(): '+e);
                     props.changeTab('errorpage');
                 }
-                setLoading(true);
             }
         }else{
             setEmailwarning('This field cannot be empty');

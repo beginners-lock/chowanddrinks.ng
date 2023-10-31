@@ -1,23 +1,76 @@
-#otpinput:focus, #otpinput:active{
-    outline:none;
+@media only screen and (max-width: 500px) {/*MOBILE*/
+    #otpinput:focus, #otpinput:active{
+        outline:none;
+    }
+    
+    #otpinput{
+        background-color:rgba(0,0,0,0); border:1px rgba(0,0,0,0) solid; color:rgba(0,0,0,0);
+    }
+    
+    .otpinputs{
+        font-family:'Rubik Bold';
+    }
+    
+    .otpwarning{
+        margin-top:40px; width:auto; text-align:center;
+        font-size:14px; font-family:'Rubik Bold';
+    }
+    
+    .otpbtns{
+        margin-top:40px; height:auto; font-size:18px;
+        width:100%; display:flex; flex-direction:row; align-items:center; justify-content:center;
+        color:white; background-color:var(--red1); border-radius:10px; padding:15px; box-sizing:border-box;
+        cursor:pointer;
+    }
 }
 
-#otpinput{
-    background-color:rgba(0,0,0,0); border:1px rgba(0,0,0,0) solid; color:rgba(0,0,0,0);
+@media only screen and (min-width: 600px) and (max-width: 1100px) {/*TABLET*/
+    #otpinput:focus, #otpinput:active{
+        outline:none;
+    }
+    
+    #otpinput{
+        background-color:rgba(0,0,0,0); border:1px rgba(0,0,0,0) solid; color:rgba(0,0,0,0);
+    }
+    
+    .otpinputs{
+        font-family:'Rubik Bold';
+    }
+    
+    .otpwarning{
+        margin-top:40px; width:auto; text-align:center;
+        font-size:18px; font-family:'Rubik Bold';
+    }
+    
+    .otpbtns{
+        margin-top:50px; height:auto; font-size:22px; cursor:pointer;
+        width:100%; display:flex; flex-direction:row; align-items:center; justify-content:center;
+        color:white; background-color:var(--red1); border-radius:10px; padding:25px; box-sizing:border-box;
+    }
 }
 
-.otpinputs{
-    font-family:'Rubik Bold';
-}
-
-.otpwarning{
-    margin-top:40px; width:auto; text-align:center;
-    font-size:14px; font-family:'Rubik Bold';
-}
-
-.otpbtns{
-    margin-top:40px; height:auto; font-size:18px;
-    width:100%; display:flex; flex-direction:row; align-items:center; justify-content:center;
-    color:white; background-color:var(--red1); border-radius:10px; padding:15px; box-sizing:border-box;
-    cursor:pointer;
+@media only screen and (min-width: 1200px) {/*LAPTOP*/
+    #otpinput:focus, #otpinput:active{
+        outline:none;
+    }
+    
+    #otpinput{
+        background-color:rgba(0,0,0,0); border:1px rgba(0,0,0,0) solid; color:rgba(0,0,0,0);
+    }
+    
+    .otpinputs{
+        font-family:'Rubik Bold';
+    }
+    
+    .otpwarning{
+        margin-top:40px; width:auto; text-align:center;
+        font-size:14px; font-family:'Rubik Bold';
+    }
+    
+    .otpbtns{
+        margin-top:40px; height:auto; font-size:18px;
+        width:100%; display:flex; flex-direction:row; align-items:center; justify-content:center;
+        color:white; background-color:var(--red1); border-radius:10px; padding:15px; box-sizing:border-box;
+        cursor:pointer;
+    }
 }

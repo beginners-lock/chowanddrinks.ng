@@ -23,7 +23,7 @@ export default function Dropdown(props) {
     }
 
     return (
-        <div id="Dropdown" style={{top: props.dropdown? device==='mobile'? '55px' : '90px' : -(window.innerHeight*0.5) }}>
+        <div id="Dropdown" style={{top: props.dropdown? device==='mobile'? '55px' : '90px' : -(window.innerHeight) }}>
             <div className='Dopts' onClick={()=>{props.changeTab('home'); props.changeDropdown(false);}} style={{color:props.activetab==='home'?'red':'black'}}>Home</div>
             <div className='Dopts' onClick={()=>{props.changeTab('order'); props.changeDropdown(false);}} style={{color:props.activetab==='order'?'red':'black'}}>Order</div>
             <div className='Dopts' onClick={()=>{props.changeTab('rentachef'); props.changeDropdown(false);}} style={{color:props.activetab==='rentachef'?'red':'black'}}>Rent-a-chef</div>
