@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import './Dropdown.css';
 
 export default function Dropdown(props) {
-    const [device, setDevice] = useState(''); 
+    const [device, setDevice] = useState((window.innerWidth<=500)? 'mobile' : (window.innerWidth>=600 && window.innerWidth<=1100) ? 'tablet' : 'laptop'); 
 
     const signin = () => {
         //Set thte initial width of the device
         setDevice((window.innerWidth<=500)? 'mobile' : (window.innerWidth>=600 && window.innerWidth<=1100) ? 'tablet' : 'laptop');
-        
+        console.log(device);
         if(props.activeuser===null){
             props.changeDropdown(false);
             props.changeTab('authentication');
@@ -37,8 +37,8 @@ export default function Dropdown(props) {
                     style={
                         props.activeuser===null? 
                             device==='mobile'?
-                                {backgroundColor:'red', color:'white', padding:'8px 0px', borderRadius:'8px'}
-                            :   {backgroundColor:'red', color:'white', padding:'15px 0px', borderRadius:'10px'}
+                                {backgroundColor:'red', color:'white', padding:'8px 10px', borderRadius:'8px'}
+                            :   {backgroundColor:'red', color:'white', padding:'15px 30px', borderRadius:'10px'}
                         :   device==='mobile'?
                                 {backgroundColor:'white', border:'1px red solid', color:'red', borderRadius:'30px', padding:'5px' }
                             :   {backgroundColor:'white', border:'1px red solid', color:'red', borderRadius:'30px', padding:'10px 8px' }}>
