@@ -27,31 +27,38 @@ export default function Order(props) {
 
     useEffect(()=>{
         setLoadingmenu(true);
-        fetch(url+'/loadcategories', {
-            method:'POST',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify({})
-        }).then(response => {
-            return response.json();
-        }).then(response => {
-            if(response.msg==='success'){
-                setCategories(response.categories);
-                setMenu(response.menu);
-                setActivecategory(0);
 
-                //Check the cadngorder on LocalStorage if anything's there
-                let savedorder = localStorage.getItem('cadngorder');
-                
-                if(savedorder){
-                    console.log(JSON.parse(savedorder));
-                    setOrderarry(JSON.parse(savedorder));
-                }
-            }else{
-                props.changeTab('errorpage');
-            } 
-
-            setLoadingmenu(false);  
-        });
+        try{
+            fetch(url+'/loadcategories', {
+                method:'POST',
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify({})
+            }).then(response => {
+                return response.json();
+            }).then(response => {
+                if(response.msg==='success'){
+                    console.log(response.menu);
+                    setCategories(response.categories);
+                    setMenu(response.menu);
+                    setActivecategory(0);
+    
+                    //Check the cadngorder on LocalStorage if anything's there
+                    let savedorder = localStorage.getItem('cadngorder');
+                    
+                    if(savedorder){
+                        console.log(JSON.parse(savedorder));
+                        setOrderarry(JSON.parse(savedorder));
+                    }
+                }else{
+                    props.changeTab('errorpage');
+                } 
+    
+                setLoadingmenu(false);  
+            });
+        }catch(e){
+            console.log('An error occured in Order useEffect: '+e);
+            props.changeTab('errorpage');
+        }
     }, []);
 
     const updateLS = () => {
@@ -106,19 +113,25 @@ export default function Order(props) {
         console.log('cc');
         if(index!==activecategory){
             setLoadingmenu(true);
-            fetch(url+'/loadcategorymenu', {
-                method:'POST',
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify({category: categories[index]})
-            }).then(response => {
-                return response.json();
-            }).then(response => {
-                if(response.msg==='success'){
-                    setMenu(response.menu);
-                    setActivecategory(index);
-                }
-                setLoadingmenu(false);
-            });        
+
+            try{
+                fetch(url+'/loadcategorymenu', {
+                    method:'POST',
+                    headers: { "Content-Type": "application/json"},
+                    body: JSON.stringify({category: categories[index]})
+                }).then(response => {
+                    return response.json();
+                }).then(response => {
+                    if(response.msg==='success'){
+                        setMenu(response.menu);
+                        setActivecategory(index);
+                    }
+                    setLoadingmenu(false);
+                }); 
+            }catch(e){
+                console.log('An error occured in changeCategory(): '+e);
+                props.changeTab('errorpage');
+            }       
         }
     }
 
@@ -141,38 +154,44 @@ export default function Order(props) {
             let amount = parseInt( orderarray.reduce( (acc, order)=>{ return acc + (order.prices.reduce((acc, val)=>{return acc+parseInt(val) ;}, 0) )*order.plates }, 0));
 
             setPaymentwarning(''); setPaymentloading(true);
-            fetch(url+'/makepayment', {
-                method:'POST',
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify({
-                    userid: props.activeuser.userid, email: props.activeuser.email, amount: amount,
-                    list: JSON.stringify(orderarray)
-                })
-            }).then(response => {
-                return response.json();
-            }).then(response => {
-                if(response.msg==='success'){
-                    if(response.data.status===true){
-                        window.location.href = response.data.data.authorization_url;
+            
+            try{
+                fetch(url+'/makepayment', {
+                    method:'POST',
+                    headers: { "Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        userid: props.activeuser.userid, email: props.activeuser.email, amount: amount,
+                        list: JSON.stringify(orderarray)
+                    })
+                }).then(response => {
+                    return response.json();
+                }).then(response => {
+                    if(response.msg==='success'){
+                        if(response.data.status===true){
+                            window.location.href = response.data.data.authorization_url;
+                        }else{
+                            setPaymentwarning('An error occured, please try again later');
+                        }
                     }else{
                         setPaymentwarning('An error occured, please try again later');
                     }
-                }else{
-                    setPaymentwarning('An error occured, please try again later');
-                }
-                setPaymentloading(false);
-            });
+                    setPaymentloading(false);
+                });
+            }catch(e){
+                console.log('An error occured in makePayment(): '+e);
+                props.changeTab('errorpage');
+            }
         }else{
             props.changeTab('authentication');
         }
     }
 
-    const delivery = () => {
+    /*const delivery = () => {
         let total = parseInt( orderarray.reduce( (acc, order)=>{ return acc + (order.prices.reduce((acc, val)=>{return acc+parseInt(val) ;}, 0) )*order.plates }, 0));
         if(total>0){
             setDockdelivery(false);
         }
-    }
+    }*/
 
     return (
         <div id="Order" style={{display:props.activetab==='order'?'flex':'none'}}>
@@ -207,7 +226,9 @@ export default function Order(props) {
                                 menu.map((menu, index) => {
                                     return(
                                         <div key={"ODchild"+index} className="ODchild" style={{display:loadingmenu?'none':'flex'}} onClick={()=>{bookorder(menu.name, menu.price);}}>
-                                            <div className='ODimg'></div>
+                                            <div className='ODimgdiv'>
+                                                <img alt="menuimg" className="ODimg" src={url+'/public/menu/'+menu.image}/>
+                                            </div>
                                             <div className='ODtitle'>{menu.name}</div>
                                             <div className='ODprice'>{'NGN '+menu.price}</div>
                                         </div>
@@ -258,22 +279,23 @@ export default function Order(props) {
                         </h4>
                     </div>
                     <div id="paymentwarning">{paymentwarning}</div>
-                    <div id="bookorder" onClick={()=>{ makePayment(); }}>    
+                    <div id="bookorder" onClick={()=>{ setDockdelivery(false);/*makePayment();*/ }}>    
                         Book Order
                     </div>
                 </div>
             </div>
             <div id="ordertoggle" onClick={()=>{ /*If you are unveiling the orders pane set the unseenorder to false*/if(showorderlist===false){setUnseenorder(false);} setShoworderlist(!showorderlist); }}>
+                <img id="menuicon" src="menu.png" alt="menu"/>
                 <div id="togglealert" style={{display:unseenorder?'flex':'none'}}></div>
             </div>
             <div id="deliverypage" style={{right:dockdelivery?-window.innerWidth:0}}>
-                <div id="DPdocker" onClick={()=>{setDockdelivery(true);}}></div>
+                <img id="DPdocker" src="rightarrow.png" onClick={()=>{setDockdelivery(true);}}/>
                 <div id="DPtext1">NOTE: Delivery is only available within Lagos</div>
                 <div id="DPmain">
                     <div id="DPleft">
                         <input className="DPinput" type='text' placeholder='Address' onChange={(e)=>{setAddress(e.target.value);}}/>
                         <div id="DPtext2">Ensure you input an accurate location in Lagos</div>
-                        <div id="makepayment"  onClick={()=>{ if(!paymentloading){ makePayment(); } }}>
+                        <div id="makepayment"  onClick={()=>{ if(!paymentloading){ if(address!==''){ makePayment(); } } }}>
                             {
                                 !paymentloading?        
                                     'Make Payment'

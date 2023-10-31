@@ -64,6 +64,7 @@ export default function TopNavBar(props) {
             </div>
 
             <div id='TNBburger' onClick={()=>{ props.changeDropdown(!props.dropdown) }}>
+                <img id="burgericon" src="burger.png"/>
                 <div id='burgeralert' style={{display:props.newnotifics?'flex':'none'}}></div>
             </div>
         </div>

@@ -26,9 +26,11 @@
     #TNBright{ display:none; }
 
     #TNBburger{ 
-        display:flex; width:25px; height:25px; border-radius:6px; background-color:red; 
+        display:flex; width:25px; height:25px; border-radius:6px; 
         justify-content:flex-end;
     }
+
+    #burgericon{ width:25px; height:25px; }
 
     #burgeralert{
         position:absolute; width:10px; height:10px; border-radius:50%; background-color:var(--orange2);
@@ -58,9 +60,11 @@
     #TNBright{ display:none; }
 
     #TNBburger{ 
-        display:flex; width:40px; height:40px; border-radius:10px; background-color:red;
+        display:flex; width:40px; height:40px; border-radius:10px;
         justify-content:flex-end;
     }
+
+    #burgericon{ width:40px; height:40px; }
 
     #burgeralert{
         position:absolute; width:15px; height:15px; border-radius:50%; background-color:var(--orange2);

@@ -39,31 +39,36 @@ const ChangePassword = (props) => {
                 setLoading(true);
                 let data  = {email: user.email, pass1: pass2, current: pass1};
 
-                fetch(url+'/changepassword', {
-                    method:'POST',
-                    headers: { "Content-Type": "application/json"},
-                    body: JSON.stringify(data)
-                }).then((response)=>{
-                    return response.json();
-                }).then((response)=>{
-                    if(response.msg==='success'){
-                        setPass1warning('Password change succesful!');
-                        setPass2warning('Password change succesful!');
-                        setPass3warning('Password change succesful!');
-                        setWarningcolor('green');
-                        props.updatenotific();
-                    }else{
-                        if(response.msg==='Wrong password'){
-                            setPass1warning('Wrong password');
+                try{
+                    fetch(url+'/changepassword', {
+                        method:'POST',
+                        headers: { "Content-Type": "application/json"},
+                        body: JSON.stringify(data)
+                    }).then((response)=>{
+                        return response.json();
+                    }).then((response)=>{
+                        if(response.msg==='success'){
+                            setPass1warning('Password change succesful!');
+                            setPass2warning('Password change succesful!');
+                            setPass3warning('Password change succesful!');
+                            setWarningcolor('green');
+                            props.updatenotific();
                         }else{
-                            setPass1warning('An error occured, please try again later');
-                            setPass2warning('An error occured, please try again later');
-                            setPass3warning('An error occured, please try again later');
+                            if(response.msg==='Wrong password'){
+                                setPass1warning('Wrong password');
+                            }else{
+                                setPass1warning('An error occured, please try again later');
+                                setPass2warning('An error occured, please try again later');
+                                setPass3warning('An error occured, please try again later');
+                            }
                         }
-                    }
-
-                    setLoading(false);
-                });
+    
+                        setLoading(false);
+                    });
+                }catch(e){
+                    console.log('An error occured in changepassword(): '+e);
+                    props.changeTab('errorpage');
+                }
             }else{
                 setPass2warning('Passwords not similar');
                 setPass3warning('Passwords not similar');  

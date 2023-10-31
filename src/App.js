@@ -49,15 +49,20 @@ function App() {
 	}
 
 	const checkNotifications = (email) => {
-		fetch(url+'/loadcategories', {
-            method:'POST',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify({email: email})
-        }).then(response => {
-            return response.json();
-        }).then(response => {
-			setNewnotifics(response.new);
-		});
+		try{
+			fetch(url+'/loadcategories', {
+				method:'POST',
+				headers: { "Content-Type": "application/json"},
+				body: JSON.stringify({email: email})
+			}).then(response => {
+				return response.json();
+			}).then(response => {
+				setNewnotifics(response.new);
+			});
+		}catch(e){
+            console.log('An error occured in Order useEffect: '+e);
+            setActivetab('errorpage');
+        }
 	}
 
   	return (
@@ -76,6 +81,7 @@ function App() {
 				activetab==='home'?
 					<Home
 						activetab={activetab}
+						changeTab={(tab)=>{setActivetab(tab);}}
 					/>
 				:activetab==='order'?
 					<Order

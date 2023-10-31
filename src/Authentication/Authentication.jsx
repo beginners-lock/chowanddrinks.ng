@@ -54,35 +54,40 @@ const Authentication = (props) => {
             };
     
             setLoading(true);
-            fetch(url+'/userlogin', {
-                method:'POST',
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify(data)
-            }).then((response)=>{
-                return response.json();
-            }).then(response => {
-                if(response.msg==='success'){
-                    localStorage.setItem('cadnguser', JSON.stringify(response.user));
-                    console.log(response.user);
-                    props.setActiveuser(response.user);
-                    props.updatenotific()
-                    props.changeTab('order');
-                }else{
-                    if(response.msg==='Wrong credentials'){
-                        setEmailwarning('Wrong credentials');
-                        setPass1warning('Wrong credentials');
+            try{
+                fetch(url+'/userlogin', {
+                    method:'POST',
+                    headers: { "Content-Type": "application/json"},
+                    body: JSON.stringify(data)
+                }).then((response)=>{
+                    return response.json();
+                }).then(response => {
+                    if(response.msg==='success'){
+                        localStorage.setItem('cadnguser', JSON.stringify(response.user));
+                        console.log(response.user);
+                        props.setActiveuser(response.user);
+                        props.updatenotific()
+                        props.changeTab('order');
                     }else{
-                        if(response.msg==='Email does not exist'){
-                            setEmailwarning('Email does not exist');
+                        if(response.msg==='Wrong credentials'){
+                            setEmailwarning('Wrong credentials');
+                            setPass1warning('Wrong credentials');
                         }else{
-                            setEmailwarning('An error occured, please try again later');
-                            setPass1warning('An error occured, please try again later');
-                            setPass2warning('An error occured, please try again later');
+                            if(response.msg==='Email does not exist'){
+                                setEmailwarning('Email does not exist');
+                            }else{
+                                setEmailwarning('An error occured, please try again later');
+                                setPass1warning('An error occured, please try again later');
+                                setPass2warning('An error occured, please try again later');
+                            }
                         }
                     }
-                }
-                setLoading(false);
-            });
+                    setLoading(false);
+                });
+            }catch(e){
+                console.log('An error occured in login(): '+e);
+                props.changeTab('errorpage');
+            }
         }
     }
 
@@ -98,26 +103,31 @@ const Authentication = (props) => {
             };
     
             setLoading(true);
-            fetch(url+'/emailverification', {
-                method:'POST',
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify(data)
-            }).then((response)=>{
-                return response.json();
-            }).then((response)=>{
-                if(response.msg==='success'){
-                    setPage2('otp');
-                }else{
-                    if(response.msg==='This email already exists'){
-                        setEmailwarning('This email already exists');
+            try{
+                fetch(url+'/emailverification', {
+                    method:'POST',
+                    headers: { "Content-Type": "application/json"},
+                    body: JSON.stringify(data)
+                }).then((response)=>{
+                    return response.json();
+                }).then((response)=>{
+                    if(response.msg==='success'){
+                        setPage2('otp');
                     }else{
-                        setEmailwarning('An error occured, please try again later');
-                        setPass1warning('An error occured, please try again later');
-                        setPass2warning('An error occured, please try again later');
+                        if(response.msg==='This email already exists'){
+                            setEmailwarning('This email already exists');
+                        }else{
+                            setEmailwarning('An error occured, please try again later');
+                            setPass1warning('An error occured, please try again later');
+                            setPass2warning('An error occured, please try again later');
+                        }
                     }
-                }
-                setLoading(false);
-            });
+                    setLoading(false);
+                });
+            }catch(e){
+                console.log('An error occured in emailverification(): '+e);
+                props.changeTab('errorpage');
+            }
         }
     }
 
@@ -147,20 +157,25 @@ const Authentication = (props) => {
             code: code,
         }
 
-        fetch(url+'/forgotpassword', {
-            method:'POST',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        }).then((response)=>{
-            return response.json();
-        }).then((response)=>{
-            if(response.msg==='success'){
-                setPage1('forgotinput'); setForgot1('');  setForgot2('');
-            }else{
-                setOtpwarning1(response.msg);
-            }
-            setOtploading(false);
-        });
+        try{
+            fetch(url+'/forgotpassword', {
+                method:'POST',
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            }).then((response)=>{
+                return response.json();
+            }).then((response)=>{
+                if(response.msg==='success'){
+                    setPage1('forgotinput'); setForgot1('');  setForgot2('');
+                }else{
+                    setOtpwarning1(response.msg);
+                }
+                setOtploading(false);
+            });   
+        }catch(e){
+            console.log('An error occured in confirmemail1(): '+e);
+            props.changeTab('errorpage');
+        }
     }
 
     const confirmemail2 = (code) => {
@@ -172,22 +187,27 @@ const Authentication = (props) => {
             code: code,
         }
 
-        fetch(url+'/usercreate', {
-            method:'POST',
-            headers: { "Content-Type": "application/json"},
-            body: JSON.stringify(data)
-        }).then((response)=>{
-            return response.json();
-        }).then((response)=>{
-            setOtpwarning2(response.msg);
-            if(response.msg==='Email Verified'){
-                localStorage.setItem('cadnguser', JSON.stringify(response.user));
-                props.setActiveuser(response.user);
-                props.updatenotific();
-                props.changeTab('order');
-            }
-            setOtploading(false);
-        });
+        try{
+            fetch(url+'/usercreate', {
+                method:'POST',
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            }).then((response)=>{
+                return response.json();
+            }).then((response)=>{
+                setOtpwarning2(response.msg);
+                if(response.msg==='Email Verified'){
+                    localStorage.setItem('cadnguser', JSON.stringify(response.user));
+                    props.setActiveuser(response.user);
+                    props.updatenotific();
+                    props.changeTab('order');
+                }
+                setOtploading(false);
+            });
+        }catch(e){
+            console.log('An error occured in confirmemail2(): '+e);
+            props.changeTab('errorpage');
+        }
     }
 
     function forgotswitcher(){
@@ -199,26 +219,32 @@ const Authentication = (props) => {
                 let data = {
                     email: email
                 };
-        
-                setLoading(true);
-                fetch(url+'/passwordemail', {
-                    method:'POST',
-                    headers: { "Content-Type": "application/json"},
-                    body: JSON.stringify(data)
-                }).then((response)=>{
-                    return response.json();
-                }).then((response)=>{
-                    if(response.msg==='success'){
-                        setPage1('forgototp');
-                    }else{
-                        if(response.msg==='This email does not exist'){
-                            setEmailwarning('This email does not exist'); 
+
+                setLoading(false);
+                
+                try{
+                    fetch(url+'/passwordemail', {
+                        method:'POST',
+                        headers: { "Content-Type": "application/json"},
+                        body: JSON.stringify(data)
+                    }).then((response)=>{
+                        return response.json();
+                    }).then((response)=>{
+                        if(response.msg==='success'){
+                            setPage1('forgototp');
                         }else{
-                            setEmailwarning('An error occured, please try again later');  
+                            if(response.msg==='This email does not exist'){
+                                setEmailwarning('This email does not exist'); 
+                            }else{
+                                setEmailwarning('An error occured, please try again later');  
+                            }
                         }
-                    }
-                    setLoading(false);
-                });
+                    });
+                }catch(e){
+                    console.log('An error occured in forgotswitcher(): '+e);
+                    props.changeTab('errorpage');
+                }
+                setLoading(true);
             }
         }else{
             setEmailwarning('This field cannot be empty');
@@ -231,23 +257,28 @@ const Authentication = (props) => {
                 setForgotloading(true);
                 let data  = {email: email, pass1: forgot1};
 
-                fetch(url+'/changepassword', {
-                    method:'POST',
-                    headers: { "Content-Type": "application/json"},
-                    body: JSON.stringify(data)
-                }).then((response)=>{
-                    return response.json();
-                }).then((response)=>{
-                    if(response.msg==='success'){
-                        props.updatenotific();
-                        setPage1('login');
-                    }else{
-                        setF1warning('An error occured, please try again later');
-                        setF2warning('An error occured, please try again later');
-                    }
-
-                    setForgotloading(false);
-                });
+                try{
+                    fetch(url+'/changepassword', {
+                        method:'POST',
+                        headers: { "Content-Type": "application/json"},
+                        body: JSON.stringify(data)
+                    }).then((response)=>{
+                        return response.json();
+                    }).then((response)=>{
+                        if(response.msg==='success'){
+                            props.updatenotific();
+                            setPage1('login');
+                        }else{
+                            setF1warning('An error occured, please try again later');
+                            setF2warning('An error occured, please try again later');
+                        }
+    
+                        setForgotloading(false);
+                    });
+                }catch(e){
+                    console.log('An error occured in changepassword(): '+e);
+                    props.changeTab('errorpage');
+                }
             }else{
                 setF1warning('Passwords not similar');
                 setF2warning('Passwords not similar');  

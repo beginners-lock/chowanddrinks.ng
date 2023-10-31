@@ -1,1 +1,1 @@
-export const url = 'http://localhost:8000';
+export const url = 'https://server-chowanddrinks-com-ng.onrender.com';//http://localhost:8000

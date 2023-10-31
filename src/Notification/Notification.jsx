@@ -14,20 +14,25 @@ const Notification = (props) => {
 			setLoading(true);
 			let userid = props.activeuser.userid;
 
-			fetch(url+'/getnotifications', {
-				method:'POST',
-				headers: { "Content-Type": "application/json"},
-				body: JSON.stringify({userid: userid})
-			}).then(response => {
-				return response.json();
-			}).then(response => {
-				if(response.msg==='success'){
-					setNotifications(response.data.reverse())
-				}else{
-					setWarning(response.msg);
-				}
-				setLoading(false);
-			});
+			try{
+				fetch(url+'/getnotifications', {
+					method:'POST',
+					headers: { "Content-Type": "application/json"},
+					body: JSON.stringify({userid: userid})
+				}).then(response => {
+					return response.json();
+				}).then(response => {
+					if(response.msg==='success'){
+						setNotifications(response.data.reverse())
+					}else{
+						setWarning(response.msg);
+					}
+					setLoading(false);
+				});
+			}catch(e){
+				console.log('An error occured in Notification useEffect: '+e);
+				props.changeTab('errorpage');
+			}
 		}else{
 			props.unsetUser();
 		}
