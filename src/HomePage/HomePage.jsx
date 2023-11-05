@@ -16,7 +16,7 @@ export default function Home(props) {
                         What's on the menu?
                     </div>
                 </div>
-                <img id="HR1right" /*style={{backgroundColor:theme.orange2}}*/ alt="homeimg" src="homeimg4.webp"/>
+                <img id="HR1right" /*style={{backgroundColor:theme.orange2}}*/ alt="homeimg" src="homeimg2.jpg"/>
             </div>
 
 

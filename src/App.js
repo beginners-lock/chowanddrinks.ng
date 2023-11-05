@@ -13,31 +13,26 @@ import { History } from './History/History';
 import { Rentachef } from './Rentachef/Rentachef';
 
 function App() {
+	const [prevtab, setPrevTab] = useState(null); //This gives us a page to fall back to after the authentication
 	const [activetab, setActivetab] = useState('home');
 	const [dropdown, setDropdown] = useState(false);
 	const [user, setUser] = useState(null);
 	const [newnotifics, setNewnotifics] = useState(false);
 
 	useEffect(()=>{
+		document.title = 'chowanddrinks.com.ng';
 		let activeuser = localStorage.getItem('cadnguser');
-		console.log('activeuser: '+activeuser);
+
 		if(activeuser){ 
-			let order = localStorage.getItem('cadngorder');
-			console.log(order);
+			//let order = localStorage.getItem('cadngorder');
 			activeuser = JSON.parse(activeuser);
 			setUser(activeuser);
-
-			if(order){
-				setActivetab('order');
-			}else{
-				setActivetab('home');
-			}
 
 			//Check notifications
 			checkNotifications(activeuser.email);
 		}else{
 			setUser(null);
-			setActivetab('authentication');
+			//setActivetab('authentication');
 		}
 	}, []);
 
@@ -69,7 +64,7 @@ function App() {
     	<div id="App">
 			<TopNavBar
 				activetab={activetab}
-				changeTab={(tab)=>{ setActivetab(tab); }}
+				changeTab={(tab)=>{ if(tab==='authentication'){ setPrevTab(activetab); } setActivetab(tab); }}
 				changeDropdown={(state)=>{ setDropdown(state); }}
 				dropdown={dropdown}
 				activeuser={user}
@@ -81,33 +76,34 @@ function App() {
 				activetab==='home'?
 					<Home
 						activetab={activetab}
-						changeTab={(tab)=>{setActivetab(tab);}}
+						changeTab={(tab)=>{ if(tab==='authentication'){ setPrevTab('home'); } setActivetab(tab);}}
 					/>
 				:activetab==='order'?
 					<Order
 						activetab={activetab}
 						activeuser={user}
-						changeTab={(tab)=>{setActivetab(tab);}}
+						changeTab={(tab)=>{if(tab==='authentication'){ setPrevTab('order'); } setActivetab(tab);}}
 						updatenotific={()=>{ setNewnotifics(true); }}
 					/>
 				:activetab==='authentication'?
 					<Authentication
 						activetab={activetab}
-						changeTab={(tab)=>{setActivetab(tab);}}
+						changeTab={(tab)=>{ setPrevTab(null); setActivetab(tab);}}
+						prevtab={prevtab}
 						setActiveuser={(user)=>{setUser(user);}}
 						updatenotific={()=>{ setNewnotifics(true); }}
 					/>
 				:activetab==='notification'?
 					<Notification
 						activetab={activetab}
-						changeTab={(tab)=>{setActivetab(tab);}}
+						changeTab={(tab)=>{if(tab==='authentication'){ setPrevTab('notification'); } setActivetab(tab);}}
 						activeuser={user}
 						unsetUser={()=>{clearUser();}}
 					/>
 				:activetab==='history'?
 					<History
 						activetab={activetab}
-						changeTab={(tab)=>{setActivetab(tab);}}
+						changeTab={(tab)=>{if(tab==='authentication'){ setPrevTab('hsitory'); } setActivetab(tab);}}
 						activeuser={user}
 						unsetUser={()=>{clearUser();}}
 					/>
@@ -117,7 +113,7 @@ function App() {
 					/>
 				:activetab==='changepassword'?
 					<ChangePassword
-						changeTab={(tab)=>{ setActivetab(tab); }}
+						changeTab={(tab)=>{ if(tab==='authentication'){ setPrevTab('changepassword'); } setActivetab(tab); }}
 						unsetUser={()=>{clearUser();}}
 						updatenotific={()=>{ setNewnotifics(true); }}
 					/>
@@ -128,7 +124,7 @@ function App() {
 			
 			<Dropdown
 				activetab={activetab}
-				changeTab={(tab)=>{ setActivetab(tab); }}
+				changeTab={(tab)=>{ if(tab==='authentication'){ setPrevTab(activetab); } setActivetab(tab); }}
 				changeDropdown={(state)=>{ setDropdown(state); }}
 				dropdown={dropdown}
 				activeuser={user}

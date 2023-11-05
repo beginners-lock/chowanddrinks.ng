@@ -50,6 +50,9 @@ const SplitInput = (props) => {
                 inputMode={'numeric'}
                 onKeyDown={(e)=>{ keyChecker(e); }}
             />
+
+            <div id="otpinstructions">{'A 6 digit code has been sent to '+props.email+'. Check your spam if it isn\'t found in your inbox.'}</div>
+
             {otpContent}
 
             <div  className='otpwarning' style={{ color: props.warning==='Email Verified'?'green':'red'}}>{props.warning}</div>

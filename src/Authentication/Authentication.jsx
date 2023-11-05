@@ -26,6 +26,8 @@ const Authentication = (props) => {
     const [f2warning, setF2warning] = useState('');
     const [forgotloading, setForgotloading] = useState(false);
 
+    const [forgototploading, setFOTPLoading] = useState(false);
+
     const resetWarning = () => {
         setEmailwarning(''); setPass1warning(''); setPass2warning('');
     }
@@ -66,8 +68,9 @@ const Authentication = (props) => {
                         localStorage.setItem('cadnguser', JSON.stringify(response.user));
                         console.log(response.user);
                         props.setActiveuser(response.user);
-                        props.updatenotific()
-                        props.changeTab('order');
+                        props.updatenotific();
+                        console.log(props.prevtab);
+                        if(props.prevtab){ props.changeTab(props.prevtab); }else{ props.changeTab('order'); }
                     }else{
                         if(response.msg==='Wrong credentials'){
                             setEmailwarning('Wrong credentials');
@@ -200,7 +203,7 @@ const Authentication = (props) => {
                     localStorage.setItem('cadnguser', JSON.stringify(response.user));
                     props.setActiveuser(response.user);
                     props.updatenotific();
-                    props.changeTab('order');
+                    if(props.prevtab){ props.changeTab(props.prevtab); }else{ props.changeTab('order'); }
                 }
                 setOtploading(false);
             });
@@ -220,7 +223,7 @@ const Authentication = (props) => {
                     email: email
                 };
 
-                setLoading(false);
+                setFOTPLoading(true);
                 
                 try{
                     fetch(url+'/passwordemail', {
@@ -239,8 +242,10 @@ const Authentication = (props) => {
                                 setEmailwarning('An error occured, please try again later');  
                             }
                         }
+                        setFOTPLoading(false);
                     });
                 }catch(e){
+                    setFOTPLoading(false);
                     console.log('An error occured in forgotswitcher(): '+e);
                     props.changeTab('errorpage');
                 }
@@ -305,7 +310,16 @@ const Authentication = (props) => {
                                 <h5 className='Authwarning'>{emailwarning}</h5>
                                 <input className="Authinput" type='password' placeholder='Password' onChange={(e)=>{setPass1(e.target.value);}}/>
                                 <h5 className='Authwarning'>{pass1warning}</h5>
-                                <div id="forgotpassword" onClick={()=>{forgotswitcher();}}>Forgot Password?</div>
+                                <div id="forgotpassword" onClick={()=>{forgotswitcher();}}>
+                                    Forgot Password? 
+                                    <LoadingSpinner
+                                        width={'10px'}
+                                        height={'10px'}
+                                        loading={forgototploading}
+                                        borderColor={'#F00000'}
+                                        borderTopColor={'rgba(0,0,0,0)'}
+                                    />
+                                </div>
                                 <div id="Loginbtn" onClick={()=>{login();}}>
                                     <div style={{display:loading?'none':'flex'}}>Login</div>
                                     <LoadingSpinner
@@ -319,6 +333,7 @@ const Authentication = (props) => {
                             </div>
                             <div id="OTPPage" style={{display:page1==='forgototp'?'flex':'none'}}>
                                 <SplitInput
+                                    email={email}
                                     sendcode={confirmemail1}
                                     loading={otploading}
                                     goback={()=>{setOtpwarning1(''); setPage1('login');}}
@@ -371,6 +386,7 @@ const Authentication = (props) => {
                             </div>
                             <div id="OTPPage" style={{display:page2==='otp'?'flex':'none'}}>
                                 <SplitInput
+                                    email={email}
                                     sendcode={confirmemail2}
                                     loading={otploading}
                                     goback={()=>{setOtpwarning2(''); setPage2('create');}}

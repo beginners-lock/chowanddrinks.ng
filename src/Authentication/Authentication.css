@@ -77,9 +77,8 @@
     .Authwarning{color:red; margin-bottom:20px; margin-top:5px; font-weight:normal;}
 
     #forgotpassword{ 
-        width:auto; display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-end; text-align:right;
-        cursor:pointer; color:var(--red1); font-size:16px; font-family:'Rubik Bold';
-        
+        width:180px; display:flex; flex-direction:row; justify-content:space-between; align-items:center;
+        cursor:pointer; color:var(--red1); font-size:16px; font-family:'Rubik Bold';  
     }
 
     #Loginbtn, #Createbtn{
@@ -155,7 +154,7 @@
     .Authwarning{color:red; font-size:18px; margin-bottom:40px; margin-top:10px; font-weight:normal;}
 
     #forgotpassword{ 
-        width:auto; display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-end; text-align:right;
+        width:250px; display:flex; flex-direction:row; justify-content:space-between; align-items:center;
         cursor:pointer; color:var(--red1); font-size:24px; font-family:'Rubik Bold';
         
     }
@@ -234,7 +233,7 @@
     .Authwarning{color:red; margin-bottom:20px; margin-top:5px; font-weight:normal;}
 
     #forgotpassword{ 
-        width:auto; display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-end; text-align:right;
+        width:180px; display:flex; flex-direction:row; justify-content:space-between; align-items:center;
         cursor:pointer; color:var(--red1); font-size:16px; font-family:'Rubik Bold';
         
     }

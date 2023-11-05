@@ -128,7 +128,7 @@
     .OLqty{width:6%; font-size:14px; text-align:right;  background-color:rgba(0,0,0,0); border:none;}
     .OLqty:active, .OLqty:focus{outline:none;}
     .OLprice{width:14%; font-size:14px; text-align:right; font-family:'Rubik Bold';}
-    .delOLchild{ width:20px; height:20px; background-color:rgba(180,0,0,0.2); border-radius:50%; cursor:pointer;}
+    .delOLchild{ width:15px; height:15px; cursor:pointer;}
 
     #bookorder{
         width:250px; border-radius:10px; font-size:14px; color:white; justify-content:center;
@@ -376,7 +376,7 @@
     .OLqty{width:6%; font-size:22px; text-align:right; background-color:rgba(0,0,0,0); border:none;}
     .OLqty:active, .OLqty:focus{outline:none;}
     .OLprice{width:14%; font-size:22px; text-align:right; font-family:'Rubik Bold';}
-    .delOLchild{ width:30px; height:30px; background-color:rgba(180,0,0,0.2); border-radius:50%; cursor:pointer;}
+    .delOLchild{ width:30px; height:30px; cursor:pointer;}
 
     #OLtotalL, #OLtotalR{ font-size:24px; }
 
@@ -631,7 +631,7 @@
     .OLqty{width:12%; font-size:13px; text-align:right; background-color:rgba(0,0,0,0); border:none;}
     .OLqty:active, .OLqty:focus{outline:none;}
     .OLprice{width:16%; font-size:13px; text-align:right; font-family:'Rubik Bold';}
-    .delOLchild{ width:20px; height:20px; background-color:rgba(180,0,0,0.2); border-radius:50%; cursor:pointer;}
+    .delOLchild{ width:15px; height:15px; cursor:pointer;}
 
     #bookorder{
         width:250px; border-radius:10px; font-size:14px; color:white; justify-content:center;
