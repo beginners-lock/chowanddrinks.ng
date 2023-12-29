@@ -116,9 +116,16 @@ export default function Order(props) {
 
     const bookorder = (name, price) => {
         let arr = [...orderarray];
+
+        if(arr.length===0){
+            arr = [{names:[], prices:[], plates:10, total:0}];
+            console.log(arr);
+            console.log(selectedrow);
+        }
+
         if(!arr[selectedrow]?.names.includes(name)){
             arr[selectedrow]?.names.push(name);
-            arr[selectedrow].prices.push(price);
+            arr[selectedrow]?.prices.push(price);
 
             //If it is a drink
             if(drinks.includes(categories[activecategory])){
@@ -143,7 +150,7 @@ export default function Order(props) {
             //Remove it from the list
             let pos = arr[selectedrow]?.names.indexOf(name);
             arr[selectedrow]?.names.splice(pos, 1);
-            arr[selectedrow].prices.splice(pos, 1);
+            arr[selectedrow]?.prices.splice(pos, 1);
 
             //If it is a drink and there is nothing on the names again set drinks to false
             if(drinks.includes(categories[activecategory]) && arr[selectedrow]?.names.length===0){
@@ -175,11 +182,12 @@ export default function Order(props) {
             if(arr.length-2>=0){
                 setSelectedrow(arr.length-2);
             }else{
-                setSelectedrow(null);
+                setSelectedrow(0);
             }
         }
 
         arr.splice(index, 1);
+        
         setOrderarry(arr);
         updateLS(arr);
         //Set the unseenorders to true only if orderlist pane is not visible (only for tab and mobile view)

@@ -50,6 +50,10 @@ export default function Home(props) {
                 </div>
             </div>
 
+            <div id="Hrowmenu">
+
+            </div>
+
             <div id="Hrow3">
                 <div id="HR3left">
                     <div className='HR3Lchild' style={{backgroundColor:theme.red1}} onClick={()=>{props.changeTab('order');}}>
