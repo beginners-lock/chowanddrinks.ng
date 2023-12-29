@@ -513,7 +513,7 @@
     }
 
     #OrderCategories{
-        width:100%; height:120px; overflow-x:auto; overflow-y:hidden;
+        width:100%; height:140px; overflow-x:auto; overflow-y:hidden; box-sizing:border-box;
         display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
     }
 
@@ -534,6 +534,11 @@
 
     #OrderCategories::-webkit-scrollbar-button{
         display:none;
+    }
+
+    #OrderTypes{
+        display:flex; flex-direction:row; align-items:center; justify-content:space-around;
+        width:70%; padding:10px 0px; margin:0px auto; cursor:pointer; font-weight:bold;
     }
 
     .OCimg{ background-color:var(--red1); width:30px; height:30px; border-radius:50%; }

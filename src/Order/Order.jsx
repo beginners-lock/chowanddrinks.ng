@@ -4,16 +4,19 @@ import './Order.css';
 import LoadingSpinner from '../Spinner/Spinner';
 
 export default function Order(props) {
-    const majors = ['Beans', 'Nigerian Staples', 'Pasta', 'Rice', 'Tubers'];
     const drinks = ['Malt']
 
     const [device, setDevice] = useState(''); 
     const [showorderlist, setShoworderlist] = useState(false);
-    const [selectedrow, setSelectedrow] = useState(0);
     const [unseenorder, setUnseenorder] = useState(false);
     
-    const [categories, setCategories] = useState([]);
-    const [activecategory, setActivecategory] = useState('');
+    const [activetype, setActiveType] = useState('Food');
+    const [types, setTypes] = useState({
+        'Food':['Beans', 'Finger Foods', 'Nigerian Soups', 'Nigerian Staples', 'Pasta', 'Proteins', 'Rice', 'Side Dish', 'Stew & Sauce', 'Tubers'], 
+        'Drinks':['Malt'], 
+        'Snacks':[]
+    });
+    const [activecategory, setActivecategory] = useState(0);
     const [menu, setMenu] = useState([]);
     const [loadingmenu, setLoadingmenu] = useState(false);
 
@@ -22,93 +25,45 @@ export default function Order(props) {
 
     const [dockdelivery, setDockdelivery] = useState(true);
     const [address, setAddress] = useState('');
-
-    const theme = {
-        'active': {
-            lightbgcolor: 'rgba(180,0,0,0.2)',
-            darkbgcolor: 'red'
-        },
-
-        'inactive': {
-            lightbgcolor: 'lightgrey',
-            darkbgcolor: 'grey'
-        }
-    }
     
     //Format of each order row
     //{names: [], prices: [], plates: Int, total: Int}
     
-    const [orderarray, setOrderarry] = useState([{names:[], prices:[], plates:10, total:0}]);
+    const [orderarray, setOrderarry] = useState([]);
 
     useEffect(()=>{
         setDevice((window.innerWidth<=500)? 'mobile' : (window.innerWidth>=600 && window.innerWidth<=1100) ? 'tablet' : 'laptop');
-        setLoadingmenu(true);
+        console.log('eff');
 
-        try{
-            fetch(url+'/loadcategories', {
-                method:'POST',
-                headers: { "Content-Type": "application/json"},
-                body: JSON.stringify({})
-            }).then(response => {
-                return response.json();
-            }).then(response => {
-                if(response.msg==='success'){
-                    setCategories(response.categories);
-    
-                    //Check the cadngorder on LocalStorage if anything's there
-                    let savedorder = localStorage.getItem('cadngorder');
-                    
-                    if(savedorder && JSON.parse(savedorder).length>0){
-                        savedorder = JSON.parse(savedorder);
-                        console.log(savedorder);
-                        setOrderarry(savedorder);
+        if(types[activetype].length>0){
+            setLoadingmenu(true);
+            
+            if(types[activetype][activecategory]===undefined){
+                setActivecategory(0);
+            }
 
-                        if(savedorder[0]?.names?.length>0){
-                            let index = 1;
-                            let cat = 'Finger Foods';
-
-                            if ( !savedorder[0].drinks ){
-                                index = 1;
-                                cat = 'Finger Foods';
-                            }else{ 
-                                index = response.categories.indexOf('Malt'); 
-                                cat = 'Malt';
-                            }
-
-                            fetch(url+'/loadcategorymenu', {
-                                method:'POST',
-                                headers: { "Content-Type": "application/json"},
-                                body: JSON.stringify({category: cat})
-                            }).then(response => {
-                                return response.json();
-                            }).then(response => {
-                                if(response.msg==='success'){
-                                    setMenu(response.menu);
-                                    setActivecategory(index);
-                                    setLoadingmenu(false);
-                                }
-                            });
-                        }else{
-                            setMenu(response.menu);
-                            setActivecategory(0);
-                            setLoadingmenu(false);
-                        }
-
-                    }else{
+            try{
+                fetch(url+'/loadcategorymenu', {
+                    method:'POST',
+                    headers: { "Content-Type": "application/json"},
+                    body: JSON.stringify({category: types[activetype][activecategory]})
+                }).then(response => {
+                    return response.json();
+                }).then(response => {
+                    if(response.msg==='success'){
                         setMenu(response.menu);
-                        setActivecategory(0);
                         setLoadingmenu(false);
                     }
-                }else{
-                    props.changeTab('errorpage');
-                    setLoadingmenu(false);
-                }   
-            });
-        }catch(e){
-            console.log('An error occured in Order useEffect: '+e);
-            props.changeTab('errorpage');
+                });
+            }catch(e){
+                console.log('An error occured in Order useEffect: '+e);
+                props.changeTab('errorpage');
+            }
+        }else{
+            setMenu([]);
         }
-    }, [props]);
+
+    }, [props, activecategory, activetype, types]);
 
     const updateLS = (arr) => {
         localStorage.setItem('cadngorder', JSON.stringify(arr));
@@ -116,75 +71,25 @@ export default function Order(props) {
 
     const bookorder = (name, price) => {
         let arr = [...orderarray];
-
-        if(arr.length===0){
-            arr = [{names:[], prices:[], plates:10, total:0}];
-            console.log(arr);
-            console.log(selectedrow);
-        }
-
-        if(!arr[selectedrow]?.names.includes(name)){
-            arr[selectedrow]?.names.push(name);
-            arr[selectedrow]?.prices.push(price);
-
-            //If it is a drink
-            if(drinks.includes(categories[activecategory])){
-                arr[selectedrow].drinks = true;
-                arr[selectedrow].plates = 5
-            }else{
-                arr[selectedrow].plates = 10
-            }
-
-            setOrderarry(arr);
-            updateLS(arr);
-            
-            //Set the unseenorders to true only if orderlist pane is not visible (only for tab and mobile view)
-            if(!showorderlist){setUnseenorder(true);}
-            
-            //Check if it was a new major or drink added and if yes change the category
-            if(majors.includes(categories[activecategory])){
-                //Sets it to Finger Food
-                changeCategory(1);
-            }
-        }else{
-            //Remove it from the list
-            let pos = arr[selectedrow]?.names.indexOf(name);
-            arr[selectedrow]?.names.splice(pos, 1);
-            arr[selectedrow]?.prices.splice(pos, 1);
-
-            //If it is a drink and there is nothing on the names again set drinks to false
-            if(drinks.includes(categories[activecategory]) && arr[selectedrow]?.names.length===0){
-                arr[selectedrow].drinks = false;
-                arr[selectedrow].plates = 10;
-            }
-
-            setOrderarry(arr);
-            updateLS(arr);
-        }
-    }
-
-    const neworder = () => {
-        let arr = [...orderarray];
         arr.push({names:[], prices:[], plates:10, total:0});
-        setOrderarry(arr);
-        updateLS(arr);
-        setSelectedrow(arr.length-1);
-        
+
+        arr[arr.length-1]?.names.push(name);
+        arr[arr.length-1]?.prices.push(price);
+        if(drinks.includes(types[activetype])){
+            arr[arr.length-1].drinks = true;
+            arr[arr.length-1].plates = 5
+        }else{
+            arr[arr.length-1].plates = 10
+        }
+
+        setOrderarry(arr); updateLS(arr);
+
         //Set the unseenorders to true only if orderlist pane is not visible (only for tab and mobile view)
         if(!showorderlist){setUnseenorder(true);}
     }
 
     const delRow = (index) => {
         let arr = [...orderarray];
-
-        //If it was the last order that was deleted
-        if(selectedrow===arr.length-1){
-            if(arr.length-2>=0){
-                setSelectedrow(arr.length-2);
-            }else{
-                setSelectedrow(0);
-            }
-        }
 
         arr.splice(index, 1);
         
@@ -194,39 +99,23 @@ export default function Order(props) {
         if(!showorderlist){setUnseenorder(true);}
     }
 
-    const changeCategory = (index) => {
-        console.log('cc');
-        if(index!==activecategory){
-            setLoadingmenu(true);
-
-            try{
-                fetch(url+'/loadcategorymenu', {
-                    method:'POST',
-                    headers: { "Content-Type": "application/json"},
-                    body: JSON.stringify({category: categories[index]})
-                }).then(response => {
-                    return response.json();
-                }).then(response => {
-                    if(response.msg==='success'){
-                        setMenu(response.menu);
-                        setActivecategory(index);
-                    }
-                    setLoadingmenu(false);
-                }); 
-            }catch(e){
-                console.log('An error occured in changeCategory(): '+e);
-                props.changeTab('errorpage');
-            }       
-        }
-    }
-
     const editPlates = (index, plates) => {
         let arr = [...orderarray];
-        if(plates<10){
-            arr[index].plates = 10;
-            document.getElementsByClassName('OLqty')[index].value = 10;
+        
+        if(arr[index].drinks){
+            if(plates<5){
+                arr[index].plates = 5;
+                document.getElementsByClassName('OLqty')[index].value = 5;
+            }else{
+                arr[index].plates = plates;
+            }
         }else{
-            arr[index].plates = plates;
+            if(plates<10){
+                arr[index].plates = 10;
+                document.getElementsByClassName('OLqty')[index].value = 10;
+            }else{
+                arr[index].plates = plates;
+            }
         }
         setOrderarry(arr);
         updateLS(arr);
@@ -278,63 +167,25 @@ export default function Order(props) {
         }
     }*/
 
-    const majorOrdrink = (category) => {
-        if( majors.includes(category) || drinks.includes(category) ){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    const selectRowFunction = (index) => {
-        setSelectedrow(index);
-
-        if( orderarray[index]?.names.length>0){
-            if ( !orderarray[index].drinks ){ 
-                if(majorOrdrink(categories[activecategory])){
-                    changeCategory(categories.indexOf('Finger Foods')); 
-                }
-            }else{
-                if(!drinks.includes(categories[activecategory])){
-                    changeCategory(categories.indexOf('Malt'));
-                }
-            }
-        }
-    }
-
     return (
         <div id="Order" style={{display:props.activetab==='order'?'flex':'none'}}>
             <script src="https://js.paystack.co/v1/inline.js"></script>
             <div id="OrderMain">
+                <div id="OrderTypes">
+                    {
+                        Object.keys(types).map((type, index)=>{
+                            return(<div key={'type'+index} style={{color:activetype===type?'red':'grey'}} onClick={()=>{ setActiveType(type); }}>{type}</div>)
+                        })
+                    }
+                </div>
                 <div id="OrderCategories">
                     {
-                        categories.length>0?
-                            categories.map((category, index)=>{
+                        types[activetype].length>0?
+                            types[activetype].map((category, index)=>{
                                 return(
-                                    <div key={"OCchild"+index} className='OCchild' style={{backgroundColor: orderarray[selectedrow]?.names.length>0 ? !orderarray[selectedrow].drinks ? majorOrdrink(category) ? theme.inactive.lightbgcolor : theme.active.lightbgcolor : drinks.includes(category) ? theme.active.lightbgcolor : theme.inactive.lightbgcolor : theme.active.lightbgcolor, border:activecategory===index?'2px red solid':'none'}} 
-                                        onClick={()=>{ 
-                                            if( orderarray[selectedrow]?.names.length>0){
-                                                if ( !orderarray[selectedrow].drinks ){
-                                                    if( majorOrdrink(category) ){ 
-                                                        
-                                                    }else{  
-                                                        changeCategory(index); 
-                                                    }
-                                                }else{   
-                                                    if( drinks.includes(category) ){ 
-                                                        changeCategory(index);
-                                                    }else{  
-                                                        
-                                                    } 
-                                                }
-                                            }else{
-                                                changeCategory(index);
-                                            }   
-                                            
-                                        }}>
-                                        
-                                        
-                                        <div className='OCimg' style={{backgroundColor: orderarray[selectedrow]?.names.length>0 ? !orderarray[selectedrow].drinks ? majorOrdrink(category) ? theme.inactive.darkbgcolor : theme.active.darkbgcolor : drinks.includes(category) ? theme.active.darkbgcolor : theme.inactive.darkbgcolor : theme.active.darkbgcolor }}></div>
+                                    <div key={"OCchild"+index} className='OCchild' style={{backgroundColor:activecategory===index?'rgba(180,0,0,0.2)':'lightgrey', border:activecategory===index?'2px red solid':'none'}} 
+                                        onClick={()=>{ setActivecategory(index); }}>
+                                        <div className='OCimg' style={{backgroundColor:activecategory===index?'red':'grey'}}></div>
                                         <div className='OCtext'>{category.length>13 ? category.slice(0, 13)+'...' : category}</div>
                                     </div>
                                 );
@@ -383,7 +234,7 @@ export default function Order(props) {
                             orderarray.length>0?
                                 orderarray.map((order, index) => {
                                     return(
-                                        <div key={"OLC"+index} className="OLchild" style={{backgroundColor:selectedrow===index?'rgba(220, 120, 120, 0.3)':'rgba(0,0,0,0)'}} onClick={(e)=>{ e.stopPropagation(); selectRowFunction(index); }}>
+                                        <div key={"OLC"+index} className="OLchild">
                                             <div className="OLname">{ order?.names.join(' + ') }</div>
                                             <input className='OLqty' type='number' min={order.drinks?"5":"10"} value={order.plates} onChange={(e)=>{ editPlates(index, e.target.value); }}/>
                                             <div className='OLprice'>{ ( order.prices.reduce((acc, val)=>{return acc+parseInt(val) ;}, 0) )*order.plates }</div>
@@ -393,9 +244,6 @@ export default function Order(props) {
                                 })
                             :<div style={{margin:'10px 0px', fontSize:'14px'}}>No orders yet</div>
                         }
-                        <div id='addneworder' style={{display:orderarray.length>0 ? orderarray[orderarray.length-1]?.names.length>0?'flex':'none':'flex'}} onClick={()=>{ neworder(); }}>
-                            Add new order
-                        </div>
                     </div>
                     <div id="OLtotal">
                         <h4 id="OLtotalL">Total</h4>
