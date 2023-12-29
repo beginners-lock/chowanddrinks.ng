@@ -1,8 +1,20 @@
 import React from 'react';
 import { theme } from '../theme';
+import { url } from '../config';
 import './HomePage.css';
 
 export default function Home(props) {
+    const menu = [
+        {name:'Fried Rice', image:'friedrice.jpg', price:'500'}, {name:'Jollof Rice', image:'jollofrice.jpg', price:'500'}, {name:'Coconut Fried Rice', image:'coconutfriedrice.jpg', price:'500'},
+        {name:'Beans & Rice (Jollof)', image:'beansandricejollof.jpg', price:'600'}, {name:'Jambalaya', image:'jambalaya.jpg', price:'500'}, {name:'Ofada Rice', image:'ofadarice.jpg', price:'600'},
+        {name:'Eba', image:'eba.jpg', price:'400'}, {name:'Fufu', image:'fufu.jpg', price:'400'}, {name:'Amala', image:'amala.jpg', price:'400'},
+        {name:'Pounded Yam', image:'poundedyam.jpg', price:'600'}, {name:'Semovita', image:'semovita.jpg', price:'400'}, {name:'Poundo', image:'poundo.jpg', price:'600'},
+        {name:'Egusi', image:'egusi.jpeg', price:'500'}, {name:'Ogbono', image:'ogbono.jpg', price:'500'}, {name:'Afang', image:'afang.jpg', price:'500'},
+        {name:'Oha', image:'oha.jpg', price:'500'}, {name:'Vegetable Soup - Ugwu', image:'ugwu.jpg', price:'500'}, {name:'Bitterleaf Soup', image:'bitterleaf.jpg', price:'500'},
+        {name:'Fried Beef', image:'friedbeef.jpeg', price:'500'}, {name:'Croaker', image:'croaker.jpeg', price:'600'}, {name:'Fried Chicken', image:'friedchicken.jpeg', price:'700'},
+        {name:'Asun', image:'asun.jpeg', price:'1000'}, {name:'Plain Spaghetti', image:'plainspaghetti.jpg', price:'500'}, {name:'Plain Yam', image:'plainyam.jpg', price:'300'}, {name:'Egg Sauce', image:'eggsauce.jpg', price:'500'}
+    ]; 
+
     return (
         <div id="Home" style={{display:props.activetab==='home'?'flex':'none'}}>
             <div id="Hrow1">
@@ -51,7 +63,22 @@ export default function Home(props) {
             </div>
 
             <div id="Hrowmenu">
-
+                <h5 id="HRmenumini1" style={{color:theme.red1}}>MENU</h5>
+                <div id="HRmenubody">
+                    {
+                        menu.map((menu, index)=>{
+                            return(
+                                <div key={"HRmenuchild"+index} className="HRmenuchild" onClick={()=>{props.changeTab('order');}}>
+                                    <div className='HRmenuimgdiv'>
+                                        <img alt="menuimg" className="HRmenuimg" src={url+'/public/menu/'+menu.image}/>
+                                    </div>
+                                    <div className='HRmenutitle'>{menu.name}</div>
+                                    <div className='HRmenuprice'>{'NGN '+menu.price}</div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
 
             <div id="Hrow3">

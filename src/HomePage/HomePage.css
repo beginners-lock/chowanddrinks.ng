@@ -200,6 +200,42 @@
         margin:0; text-align:center; font-family:'Rubik Light'; font-size:20px;
     }
 
+    #Hrowmenu{
+        display:flex; margin-top:30px; padding:20px; box-sizing:border-box;
+        width:100%; flex-direction:column; align-items:center; justify-content:flex-start;
+    }
+
+    #HRmenumini1{
+        font-family:'Rubik Bold'; margin:0; font-size:14px;
+    }
+
+    #HRmenubody{
+        display:flex; flex-direction:row; align-items:flex-start; justify-content:space-around; flex-wrap:wrap;
+        width:100%; margin-top:10px; padding:20px 0px 0px 0px; box-sizing:border-box;
+    }
+
+    .HRmenuchild{
+        width:220px; height:200px; margin:0px 0px 30px 0px; box-sizing:border-box;
+        overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start;
+    }
+
+    .HRmenuimgdiv{
+        width:100%; height:150px; border-radius:10px; background-color:rgb(240, 240, 240);
+        overflow:hidden; display:flex; flex-direction:row; align-items:center; justify-content:center;
+    }
+
+    .HRmenuimg{
+        width:100%; min-height:100%; max-height:auto;
+    } 
+
+    .HRmenutitle{
+        font-family:'Rubik Bold'; font-size:14px; margin-top:20px;;
+    }
+
+    .HRmenuprice{
+        font-family: 'Rubik Regular'; font-size:14px; color:grey;
+    }
+
     #Hrow3{
         width:100%; height:auto; display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
         padding:25px 10px; margin:5px 0px; box-sizing:border-box;
@@ -341,9 +377,40 @@
         margin:0; text-align:center; font-family:'Rubik Light';
     }
 
-    .HR2rowmenu{
+    #Hrowmenu{
         display:flex; margin-top:30px; padding:20px; box-sizing:border-box;
         width:100%; flex-direction:column; align-items:center; justify-content:flex-start;
+    }
+
+    #HRmenumini1{
+        font-family:'Rubik Bold'; margin:0; font-size:14px;
+    }
+
+    #HRmenubody{
+        display:flex; flex-direction:row; align-items:flex-start; justify-content:space-around; flex-wrap:wrap;
+        width:100%; margin-top:10px; padding:20px 0px 0px 0px; box-sizing:border-box;
+    }
+
+    .HRmenuchild{
+        width:220px; height:200px; margin:0px 0px 30px 0px; box-sizing:border-box;
+        overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start;
+    }
+
+    .HRmenuimgdiv{
+        width:100%; height:150px; border-radius:10px; background-color:rgb(240, 240, 240);
+        overflow:hidden; display:flex; flex-direction:row; align-items:center; justify-content:center;
+    }
+
+    .HRmenuimg{
+        width:100%; min-height:100%; max-height:auto;
+    } 
+
+    .HRmenutitle{
+        font-family:'Rubik Bold'; font-size:14px; margin-top:20px;;
+    }
+
+    .HRmenuprice{
+        font-family: 'Rubik Regular'; font-size:14px; color:grey;
     }
 
     #Hrow3{
