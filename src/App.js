@@ -10,7 +10,7 @@ import ErrorPage from './ErrorPage/ErrorPage';
 import ChangePassword from './ChangePassword/ChangePassword';
 import { url } from './config';
 import { History } from './History/History';
-import { Rentachef } from './Rentachef/Rentachef';
+import { Aboutus } from './Aboutus/Aboutus';
 
 function App() {
 	const [prevtab, setPrevTab] = useState(null); //This gives us a page to fall back to after the authentication
@@ -117,8 +117,8 @@ function App() {
 						unsetUser={()=>{clearUser();}}
 						updatenotific={()=>{ setNewnotifics(true); }}
 					/>
-				:activetab==='rentachef'?
-					<Rentachef/>
+				:activetab==='aboutus'?
+					<Aboutus/>
 				:''
 			}
 			

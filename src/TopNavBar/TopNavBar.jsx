@@ -31,9 +31,9 @@ export default function TopNavBar(props) {
                     <div className='TNBdivs' style={{backgroundColor:props.activetab==='order'?theme.red1:theme.transparent}}></div>
                 </div>
 
-                <div className='TNBopts' onClick={()=>{props.changeTab('rentachef');}}>
-                    <div style={{color:props.activetab==='rentachef'?theme.red1:theme.black1}}>Rent-a-chef</div>
-                    <div className='TNBdivs' style={{backgroundColor:props.activetab==='rentachef'?theme.red1:theme.transparent}}></div>
+                <div className='TNBopts' onClick={()=>{props.changeTab('aboutus');}}>
+                    <div style={{color:props.activetab==='aboutus'?theme.red1:theme.black1}}>About Us</div>
+                    <div className='TNBdivs' style={{backgroundColor:props.activetab==='aboutus'?theme.red1:theme.transparent}}></div>
                 </div>
 
                 <div className='TNBopts' onClick={()=>{props.changeTab('history');}}>

@@ -26,7 +26,7 @@ export default function Dropdown(props) {
         <div id="Dropdown" style={{top: props.dropdown? device==='mobile'? '55px' : '90px' : -(window.innerHeight) }}>
             <div className='Dopts' onClick={()=>{props.changeTab('home'); props.changeDropdown(false);}} style={{color:props.activetab==='home'?'red':'black'}}>Home</div>
             <div className='Dopts' onClick={()=>{props.changeTab('order'); props.changeDropdown(false);}} style={{color:props.activetab==='order'?'red':'black'}}>Order</div>
-            <div className='Dopts' onClick={()=>{props.changeTab('rentachef'); props.changeDropdown(false);}} style={{color:props.activetab==='rentachef'?'red':'black'}}>Rent-a-chef</div>
+            <div className='Dopts' onClick={()=>{props.changeTab('aboutus'); props.changeDropdown(false);}} style={{color:props.activetab==='aboutus'?'red':'black'}}>About Us</div>
             <div className='Dopts' onClick={()=>{props.changeTab('history'); props.changeDropdown(false);}} style={{color:props.activetab==='history'?'red':'black'}}>History</div>
             <div className='Dopts' style={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'flex-start', color:props.activetab==='notification'?'red':'black'}} onClick={()=>{props.changeTab('notification'); props.changeDropdown(false);}}>
                 Notifications
